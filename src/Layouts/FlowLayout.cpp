@@ -17,7 +17,7 @@ public:
     FlowLayoutPrivate(FlowLayout *layout) : _this(layout) {}
     void invalidCache();
     QSize effectiveItemSize(QLayoutItem *item) const;
-    QSize calculateSize(const QSize &constraint);
+    QSize calculateSize(const QSize &constraint = QSize());
     void doLayout(const QRect &rect) const;
     int directionSign() const;
     void applyDirectionAdjustment(const QRect &rect, QVector<QRect> &geometries) const;
@@ -138,6 +138,9 @@ int FlowLayout::count() const {
 }
 
 QLayoutItem *FlowLayout::itemAt(int index) const {
+    if (index >= d->items.count())
+        return nullptr;
+
     return d->items.at(index);
 }
 
@@ -145,6 +148,18 @@ QLayoutItem *FlowLayout::takeAt(int index) {
     const auto item = d->items.at(index);
     removeItem(item);
     return item;
+}
+
+QSize FlowLayout::sizeHint() const {
+    return d->calculateSize();
+}
+
+void FlowLayout::setGeometry(const QRect &rect) {
+    if(geometry() == rect && d->cacheValid)
+        return;
+    Super::setGeometry(rect);
+    d->doLayout(rect); // 实际布局
+    d->calculateSize(); // 预填充缓存
 }
 
 ////////////////////////////////////////////// QLayout::重写方法 ////////////////////////////////////////////////////////

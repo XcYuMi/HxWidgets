@@ -1,6 +1,4 @@
-﻿#ifndef TESTSTARTERWIDGET_HPP
-#define TESTSTARTERWIDGET_HPP
-
+﻿#pragma once
 #include <QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -12,12 +10,11 @@ QT_END_NAMESPACE
 class TestStarterWidget : public QWidget
 {
     Q_OBJECT
-
+    Ui::TestStarterWidget *ui;
 public:
     TestStarterWidget(QWidget *parent = nullptr);
     ~TestStarterWidget();
 
 private:
-    Ui::TestStarterWidget *ui;
+    void onButtonFlowLayoutClicked();
 };
-#endif // TESTSTARTERWIDGET_HPP

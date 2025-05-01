@@ -2,10 +2,14 @@
 #include <QtGlobal>
 
 // 库导入导出宏
-#ifdef HX_WIDGETS_LIBRARY
-#define HX_WIDGETS_EXPORT Q_DECL_EXPORT
+#ifdef HX_WIDGET_INSOURCE
+    #define HX_WIDGETS_EXPORT
 #else
-#define HX_WIDGETS_EXPORT Q_DECL_IMPORT
+    #ifdef HX_WIDGETS_LIBRARY
+        #define HX_WIDGETS_EXPORT Q_DECL_EXPORT
+    #else
+        #define HX_WIDGETS_EXPORT Q_DECL_IMPORT
+    #endif
 #endif
 
 // 命名空间
@@ -25,6 +29,6 @@
 
 // 类界面指针申明宏
 #define HX_DECLARE_UI(T) \
-    class T##Ui \
+    class T##Ui; \
     QScopedPointer<T##Ui> ui; \
     friend class T##Ui;

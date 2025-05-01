@@ -58,6 +58,10 @@ public:
     QLayoutItem *takeAt(int index) override;
 
 public:
+    QSize sizeHint() const override;
+    void setGeometry(const QRect &rect) override;
+
+public:
     bool hasHeightForWidth() const override;
     int heightForWidth(int width) const override;
 };

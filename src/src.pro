@@ -2,13 +2,11 @@ QT += core gui widgets
 
 TEMPLATE = lib
 
-win32 {
-    CONFIG(debug, debug|release) {
-        TARGET= HxWidgetsd
-    } else {
-        TARGET= HxWidgets
-    }
-}
+win32:CONFIG(release, debug|release): TARGET = HxWidgets
+else:win32:CONFIG(debug, debug|release): TARGET = HxWidgetsd
+
+BUILD_PATH = $$OUT_PWD/../../../
+message(BuildPath = $$absolute_path($$BUILD_PATH))
 
 DEFINES += HX_WIDGETS_LIBRARY
 

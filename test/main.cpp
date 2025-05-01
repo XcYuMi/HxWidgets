@@ -1,11 +1,14 @@
-﻿#include "TestStarterWidget.hpp"
+﻿#include <QApplication>
+#include "TestStarterWidget.hpp"
 
-#include <QApplication>
+int main(int argc, char *argv[]) {
+    QApplication::setAttribute(Qt::AA_EnableHighDpiScaling, true);
+    QApplication::setHighDpiScaleFactorRoundingPolicy(Qt::HighDpiScaleFactorRoundingPolicy::PassThrough);
 
-int main(int argc, char *argv[])
-{
-    QApplication a(argc, argv);
-    TestStarterWidget w;
-    w.show();
-    return a.exec();
+    QApplication app(argc, argv);
+
+    TestStarterWidget starterWidget;
+    starterWidget.show();
+
+    return app.exec();
 }
