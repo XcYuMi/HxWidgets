@@ -6,18 +6,46 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>285</width>
-    <height>316</height>
+    <width>197</width>
+    <height>195</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>TestStarterWidget</string>
+   <string>测试启动器</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QPushButton" name="buttonFlowLayout">
      <property name="text">
-      <string>FlowLayout</string>
+      <string>流式布局</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="buttonAnchorLayout">
+     <property name="text">
+      <string>锚布局</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="buttonNestedSplitter">
+     <property name="text">
+      <string>嵌套分割器</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="buttonRangeSlider">
+     <property name="text">
+      <string>范围滑块</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="buttonFloatRangeSlider">
+     <property name="text">
+      <string>浮点范围滑块</string>
      </property>
     </widget>
    </item>

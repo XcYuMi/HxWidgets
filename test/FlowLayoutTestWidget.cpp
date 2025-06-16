@@ -1,7 +1,9 @@
 ﻿#include "FlowLayoutTestWidget.hpp"
+#include "WidgetsTestGlobalPrivate.hpp"
 #include "FlowLayout.hpp"
+#include "WidgetUtils.hpp"
 
-#pragma execution_character_set("utf-8")
+using Hx::WidgetUtils;
 
 #include <QContextMenuEvent>
 #include <QMetaEnum>
@@ -39,6 +41,7 @@ public:
     void retranslateUi();
     QWidget *contextMenu();
     void retranslateMenuUi();
+    void initContextMenu();
 public:
     QFrame *flowContainer{nullptr};
     Hx::FlowLayout *flowLayout{nullptr};
@@ -68,13 +71,20 @@ FlowLayoutTestWidget::FlowLayoutTestWidget(QWidget *parent) : QWidget{parent} {
 void FlowLayoutTestWidget::FlowLayoutTestWidgetUi::setupUi(FlowLayoutTestWidget *widget) {
     _this = widget;
 
-    const auto layout = new QGridLayout(_this);
     flowContainer = new QFrame(_this);
     flowContainer->setFrameStyle(QFrame::StyledPanel);
-    layout->addItem(new QSpacerItem(6, 6, QSizePolicy::Expanding, QSizePolicy::Expanding), 0, 0);
-    layout->addWidget(flowContainer, 0 , 1);
-    layout->addItem(new QSpacerItem(6, 6, QSizePolicy::Expanding, QSizePolicy::Expanding), 0, 2);
-    layout->addItem(new QSpacerItem(6, 6, QSizePolicy::Expanding, QSizePolicy::Expanding), 1, 0, 3);
+
+    const bool in_layout  = false;
+    if(in_layout) {
+        const auto layout = new QGridLayout(_this);
+        layout->addItem(new QSpacerItem(6, 6, QSizePolicy::Expanding, QSizePolicy::Expanding), 0, 0);
+        layout->addWidget(flowContainer, 0 , 1);
+        layout->addItem(new QSpacerItem(6, 6, QSizePolicy::Expanding, QSizePolicy::Expanding), 0, 2);
+        layout->addItem(new QSpacerItem(6, 6, QSizePolicy::Expanding, QSizePolicy::Expanding), 1, 0, 3);
+    } else {
+        const auto layout = new QVBoxLayout(_this);
+        layout->addWidget(flowContainer);
+    }
 
     flowLayout = new Hx::FlowLayout(flowContainer);
 
@@ -88,7 +98,7 @@ void FlowLayoutTestWidget::FlowLayoutTestWidgetUi::setupUi(FlowLayoutTestWidget 
 }
 
 void FlowLayoutTestWidget::FlowLayoutTestWidgetUi::retranslateUi() {
-    _this->setWindowTitle("Flow Layout 测试窗口");
+    _this->setWindowTitle("浮动布局-测试窗口");
 }
 
 template<class T>
@@ -97,54 +107,82 @@ void InitSelectorWidthEnum(QComboBox* selector) {
     for (int i = 0; i < metaEnum.keyCount(); ++i) {
         const auto value = T(metaEnum.value(i));
         const auto& name = metaEnum.key(i);
-        selector->addItem(name, value);
+        selector->addItem(name, QVariant::fromValue<T>(value));
     }
 }
 
 QWidget *FlowLayoutTestWidget::FlowLayoutTestWidgetUi::contextMenu()
 {
-    if(menu != nullptr)
-        return menu;
+    if (menu == nullptr) {
+        menu = new QMenu(_this);
+        menu->setWindowFlag(Qt::Popup);
+        const auto layout = new QFormLayout(menu);
 
-    menu = new QMenu(_this);
-    menu->setWindowFlag(Qt::Popup);
-    const auto layout = new QFormLayout(menu);
+        labelFlowOrder = new QLabel(menu);
+        selectorFlowOrder = new QComboBox(menu);
+        InitSelectorWidthEnum<Hx::FlowLayout::FlowOrder>(selectorFlowOrder);
+        layout->addRow(labelFlowOrder, selectorFlowOrder);
+        connect(selectorFlowOrder, qOverload<int>(&QComboBox::currentIndexChanged), flowLayout, [=] {
+            const auto value = selectorFlowOrder->currentData().value<Hx::FlowLayout::FlowOrder>();
+            flowLayout->setFlowOrder(value);
+        });
 
-    labelFlowOrder = new QLabel(menu);
-    selectorFlowOrder = new QComboBox(menu);
-    InitSelectorWidthEnum<Hx::FlowLayout::FlowOrder>(selectorFlowOrder);
-    layout->addRow(labelFlowOrder, selectorFlowOrder);
-    
-    labelHorFlow = new QLabel(menu);
-    selectorHorFlow = new QComboBox(menu);
-    //InitSelectorWidthEnum<Hx::FlowLayout::HorizontalFlowDirection>(selectorHorFlow);
-    layout->addRow(labelHorFlow, selectorHorFlow);
-    
-    labelVerFlow = new QLabel(menu);
-    selectorVerFlow = new QComboBox(menu);
-    //InitSelectorWidthEnum<Hx::FlowLayout::VerticalFlowDirection>(selectorVerFlow);
-    layout->addRow(labelVerFlow, selectorVerFlow);
+        labelHorFlow = new QLabel(menu);
+        selectorHorFlow = new QComboBox(menu);
+        InitSelectorWidthEnum<Hx::FlowLayout::HorizontalFlowDirection>(selectorHorFlow);
+        layout->addRow(labelHorFlow, selectorHorFlow);
+        connect(selectorHorFlow, qOverload<int>(&QComboBox::currentIndexChanged), flowLayout, [=] {
+            const auto value = selectorHorFlow->currentData()
+                                   .value<Hx::FlowLayout::HorizontalFlowDirection>();
+            flowLayout->setHorizontalFlow(value);
+        });
 
-    labelHorSpacing = new QLabel(menu);
-    spinHorSpacing = new QSpinBox(menu);
-    spinHorSpacing->setRange(0, 100);
-    sliderHorSpacing = new QSlider(Qt::Horizontal, menu);
-    sliderHorSpacing->setRange(0, 100);
-    const auto layoutHorSpacing = new QHBoxLayout;
-    layoutHorSpacing->addWidget(spinHorSpacing);
-    layoutHorSpacing->addWidget(sliderHorSpacing);
-    layout->addRow(labelHorSpacing, layoutHorSpacing);
+        labelVerFlow = new QLabel(menu);
+        selectorVerFlow = new QComboBox(menu);
+        InitSelectorWidthEnum<Hx::FlowLayout::VerticalFlowDirection>(selectorVerFlow);
+        layout->addRow(labelVerFlow, selectorVerFlow);
+        connect(selectorVerFlow, qOverload<int>(&QComboBox::currentIndexChanged), flowLayout, [=] {
+            const auto value = selectorVerFlow->currentData()
+                                   .value<Hx::FlowLayout::VerticalFlowDirection>();
+            flowLayout->setVerticalFlow(value);
+        });
 
-    labelVerSpacing = new QLabel(menu);
-    spinVerSpacing = new QSpinBox(menu);
-    spinVerSpacing->setRange(0, 100);
-    sliderVerSpacing = new QSlider(Qt::Horizontal, menu);
-    sliderVerSpacing->setRange(0, 100);
-    const auto layoutVerSpacing = new QHBoxLayout;
-    layoutVerSpacing->addWidget(spinVerSpacing);
-    layoutVerSpacing->addWidget(sliderVerSpacing);
-    layout->addRow(labelVerSpacing, layoutVerSpacing);
+        labelHorSpacing = new QLabel(menu);
+        spinHorSpacing = new QSpinBox(menu);
+        spinHorSpacing->setRange(0, 100);
+        sliderHorSpacing = new QSlider(Qt::Horizontal, menu);
+        sliderHorSpacing->setRange(0, 100);
+        const auto layoutHorSpacing = new QHBoxLayout;
+        layoutHorSpacing->addWidget(spinHorSpacing);
+        layoutHorSpacing->addWidget(sliderHorSpacing);
+        layout->addRow(labelHorSpacing, layoutHorSpacing);
+        connect(sliderHorSpacing, &QSlider::valueChanged, flowLayout, [=](int value) {
+            flowLayout->setHorizontalSpacing(value);
+            WidgetUtils::SetSpinBoxValue(spinHorSpacing, value);
+        });
+        connect(spinHorSpacing, qOverload<int>(&QSpinBox::valueChanged), sliderHorSpacing, [=](int value) {
+            WidgetUtils::SetSliderValue(sliderHorSpacing, value, true);
+        });
 
+        labelVerSpacing = new QLabel(menu);
+        spinVerSpacing = new QSpinBox(menu);
+        spinVerSpacing->setRange(0, 100);
+        sliderVerSpacing = new QSlider(Qt::Horizontal, menu);
+        sliderVerSpacing->setRange(0, 100);
+        const auto layoutVerSpacing = new QHBoxLayout;
+        layoutVerSpacing->addWidget(spinVerSpacing);
+        layoutVerSpacing->addWidget(sliderVerSpacing);
+        layout->addRow(labelVerSpacing, layoutVerSpacing);
+        connect(sliderVerSpacing, &QSlider::valueChanged, flowLayout, [=](int value) {
+            flowLayout->setVerticalSpacing(value);
+            WidgetUtils::SetSpinBoxValue(spinVerSpacing, value);
+        });
+        connect(spinVerSpacing, qOverload<int>(&QSpinBox::valueChanged), sliderVerSpacing, [=](int value) {
+            WidgetUtils::SetSliderValue(sliderVerSpacing, value, true);
+        });
+    }
+
+    initContextMenu();
     retranslateMenuUi();
 
     return menu;
@@ -159,6 +197,19 @@ void FlowLayoutTestWidget::FlowLayoutTestWidgetUi::retranslateMenuUi() {
     labelVerFlow->setText("竖直流动方向");
     labelHorSpacing->setText("水平间距");
     labelVerSpacing->setText("竖直间距");
+}
+
+void FlowLayoutTestWidget::FlowLayoutTestWidgetUi::initContextMenu()
+{
+    WidgetUtils::SetComboxBoxCurrentData(selectorFlowOrder, QVariant::fromValue<Hx::FlowLayout::FlowOrder>(flowLayout->flowOrder()));
+    WidgetUtils::SetComboxBoxCurrentData(selectorHorFlow, QVariant::fromValue<Hx::FlowLayout::HorizontalFlowDirection>(flowLayout->horizontalFlow()));
+    WidgetUtils::SetComboxBoxCurrentData(selectorVerFlow, QVariant::fromValue<Hx::FlowLayout::VerticalFlowDirection>(flowLayout->verticalFlow()));
+
+    WidgetUtils::SetSpinBoxValue(spinHorSpacing, flowLayout->horizontalSpacing());
+    WidgetUtils::SetSliderValue(sliderHorSpacing, flowLayout->horizontalSpacing());
+
+    WidgetUtils::SetSpinBoxValue(spinVerSpacing, flowLayout->verticalSpacing());
+    WidgetUtils::SetSliderValue(sliderVerSpacing, flowLayout->verticalSpacing());
 }
 
 void FlowLayoutTestWidget::contextMenuEvent(QContextMenuEvent *event) {

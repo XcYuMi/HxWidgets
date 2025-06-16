@@ -1,20 +1,27 @@
 ﻿#pragma once
 #include "HxWidgetsGlobal.hpp"
 
-#include <QWidget>
+class QWidget;
+class QComboBox;
+class QSlider;
+class QSpinBox;
+class QCheckBox;
 
 HX_BEGIN_NAMESPACE
 
-namespace WidgetUtils {
+class HX_WIDGETS_EXPORT WidgetUtils {
+public: // QWidget
+    static void setWidth(QWidget *widget, int width);
+    static void setHeight(QWidget *widget, int height);
 
-inline void setWidth(QWidget *widget, int width) {
-    widget->resize(width, widget->height());
-}
+public: // QComboBox
+    static void SetComboxBoxCurrentData(QComboBox *control, const QVariant &data, bool blockSignal = true);
 
-inline void setHeight(QWidget *widget, int height) {
-    widget->resize(widget->width(), height);
-}
+public: // SpinBox
+    static void SetSpinBoxValue(QSpinBox *control, int value, bool blockSignal = true);
 
-}
+public: // Slider
+    static void SetSliderValue(QSlider *control, int value, bool blockSignal = true);
+};
 
 HX_END_NAMESPACE

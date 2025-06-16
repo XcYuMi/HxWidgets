@@ -11,19 +11,19 @@ class HX_WIDGETS_EXPORT FlowLayout : public QLayout
     using Super = QLayout;
 
 public:
-    enum FlowOrder {
+    enum class FlowOrder {
         RowFirst,
         ColumnFirst
     };
     Q_ENUM(FlowOrder)
 
-    enum HorizontalFlowDirection {
+    enum class HorizontalFlowDirection {
         LeftToRight,
         RightToLeft,
     };
     Q_ENUM(HorizontalFlowDirection)
 
-    enum VerticalFlowDirection {
+    enum class VerticalFlowDirection {
         TopToBottom,
         BottomToTop,
     };
@@ -65,5 +65,6 @@ public:
     bool hasHeightForWidth() const override;
     int heightForWidth(int width) const override;
 };
+
 
 HX_END_NAMESPACE

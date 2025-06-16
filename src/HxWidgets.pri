@@ -1,6 +1,11 @@
 INCLUDEPATH += $$PWD
 DEPENDPATH += $$PWD
 
-INCLUDEPATH += $$PWD/Layouts \
-    $$PWD/Globals
+INCLUDEPATH += $$PWD/Globals
 
+INCLUDEPATH += $$PWD/NativeWindow
+
+INCLUDEPATH += $$PWD/Layouts
+INCLUDEPATH += $$PWD/Controls
+INCLUDEPATH += $$PWD/Containers
+INCLUDEPATH += $$PWD/DockSystem

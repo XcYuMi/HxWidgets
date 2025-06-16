@@ -203,7 +203,7 @@ QSize FlowLayout::FlowLayoutPrivate::calculateSize(const QSize &constraint) {
     if (cacheValid && constraint.isEmpty())
         return layoutCache.sizeHint;
 
-    const bool isRowFirst = (flowOrder == RowFirst);
+    const bool isRowFirst = (flowOrder == FlowOrder::RowFirst);
     const int hSign = (horizontalFlow == HorizontalFlowDirection::LeftToRight) ? 1 : -1;
     const int vSign = (verticalFlow == VerticalFlowDirection::TopToBottom) ? 1 : -1;
 
@@ -266,7 +266,7 @@ void FlowLayout::FlowLayoutPrivate::doLayout(const QRect &rect) const {
     if (items.isEmpty())
         return;
 
-    const bool isRowFirst = (flowOrder == RowFirst);
+    const bool isRowFirst = (flowOrder == FlowOrder::RowFirst);
     const int hSign = (horizontalFlow == HorizontalFlowDirection::LeftToRight) ? 1 : -1; // 水平方向符号 (1 或 -1)
     const int vSign = (verticalFlow == VerticalFlowDirection::TopToBottom) ? 1 : -1; // 垂直方向符号 (1 或 -1)
 
@@ -324,7 +324,7 @@ void FlowLayout::FlowLayoutPrivate::doLayout(const QRect &rect) const {
 }
 
 void FlowLayout::FlowLayoutPrivate::applyDirectionAdjustment(const QRect &rect, QVector<QRect> &geometries) const {
-    if(horizontalFlow == LeftToRight && verticalFlow == TopToBottom)
+    if(horizontalFlow == HorizontalFlowDirection::LeftToRight && verticalFlow == VerticalFlowDirection::TopToBottom)
         return;
 
     // 计算布局总范围
@@ -334,7 +334,7 @@ void FlowLayout::FlowLayoutPrivate::applyDirectionAdjustment(const QRect &rect, 
     }
 
     // 水平逆向（从右到左）
-    if (horizontalFlow == RightToLeft) {
+    if (horizontalFlow == HorizontalFlowDirection::RightToLeft) {
         const int rightEdge = rect.right();
         for (QRect &geo : geometries) {
             int itemRight = geo.right() - totalBounding.left();
@@ -343,7 +343,7 @@ void FlowLayout::FlowLayoutPrivate::applyDirectionAdjustment(const QRect &rect, 
     }
 
     // 垂直逆向（从下到上）
-    if (verticalFlow == BottomToTop) {
+    if (verticalFlow == VerticalFlowDirection::BottomToTop) {
         const int bottomEdge = rect.bottom();
         for (QRect &geo : geometries) {
             int itemBottom = geo.bottom() - totalBounding.top();

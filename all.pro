@@ -1,6 +1,7 @@
 TEMPLATE = subdirs
 
 SUBDIRS += \
-    examples \
-    src \
-    test
+    Src \
+    Test \
+    Examples \
+    Tools \

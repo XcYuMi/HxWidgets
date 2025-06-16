@@ -17,4 +17,8 @@ public:
 
 private:
     void onButtonFlowLayoutClicked();
+    void onActionTestAnchorLayout();
+    void onActionTestNestedSplitter();
+    void onActionTestRangeSlider();
+    void onActionTestDoubleRangeSlider();
 };
