@@ -21,4 +21,5 @@ private:
     void onActionTestNestedSplitter();
     void onActionTestRangeSlider();
     void onActionTestDoubleRangeSlider();
+    void onActionTestToolBar();
 };

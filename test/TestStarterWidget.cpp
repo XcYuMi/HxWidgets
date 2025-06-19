@@ -6,6 +6,7 @@
 #include "NestedSplitterTestWidget.hpp"
 #include "RangeSliderTestWidget.hpp"
 #include "DoubleRangeSliderTestWidget.hpp"
+#include "ToolBarTestWidget.hpp"
 
 TestStarterWidget::~TestStarterWidget() {
     delete ui;
@@ -20,6 +21,7 @@ TestStarterWidget::TestStarterWidget(QWidget *parent) : QWidget(parent) , ui(new
     connect(ui->buttonNestedSplitter, &QPushButton::clicked, this, &TestStarterWidget::onActionTestNestedSplitter);
     connect(ui->buttonRangeSlider, &QPushButton::clicked, this, &TestStarterWidget::onActionTestRangeSlider);
     connect(ui->buttonFloatRangeSlider, &QPushButton::clicked, this, &TestStarterWidget::onActionTestDoubleRangeSlider);
+    connect(ui->buttonToolBar, &QPushButton::clicked, this, &TestStarterWidget::onActionTestToolBar);
 }
 
 void TestStarterWidget::onButtonFlowLayoutClicked() {
@@ -52,6 +54,13 @@ void TestStarterWidget::onActionTestRangeSlider() {
 
 void TestStarterWidget::onActionTestDoubleRangeSlider() {
     const auto widget = new DoubleRangeSliderTestWidget(this);
+    widget->setWindowFlag(Qt::Window);
+    widget->setAttribute(Qt::WA_DeleteOnClose);
+    widget->show();
+}
+
+void TestStarterWidget::onActionTestToolBar() {
+    const auto widget = new ToolBarTestWidget(this);
     widget->setWindowFlag(Qt::Window);
     widget->setAttribute(Qt::WA_DeleteOnClose);
     widget->show();

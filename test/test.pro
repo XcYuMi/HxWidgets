@@ -20,6 +20,7 @@ SOURCES += \
     FlowLayoutTestWidget.cpp \
     NestedSplitterTestWidget.cpp \
     RangeSliderTestWidget.cpp \
+    ToolBarTestWidget.cpp \
     WidgetsTestGlobal.cpp \
     main.cpp \
     TestStarterWidget.cpp
@@ -31,6 +32,7 @@ HEADERS += \
     NestedSplitterTestWidget.hpp \
     RangeSliderTestWidget.hpp \
     TestStarterWidget.hpp \
+    ToolBarTestWidget.hpp \
     WidgetsTestGlobalPrivate.hpp
 
 FORMS += \
