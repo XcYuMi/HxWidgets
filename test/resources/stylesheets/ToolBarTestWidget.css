@@ -1,0 +1,10 @@
+﻿ToolBarTestWidget HxToolBar {
+    border: 1px solid green;
+}
+
+ToolBarTestWidget HxToolBar QFrame#ToolBarSeparator {
+    min-width: 1px;
+    max-width: 1px;
+    min-height: 6px;
+    background-color: blue;
+}

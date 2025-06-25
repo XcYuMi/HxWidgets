@@ -9,4 +9,7 @@ public:
     ~ToolBarTestWidget();
 private:
     void onAddActionTriggered();
+    void onAddSeparatorTriggered();
+    void onAddStretchTriggered();
+    void onAddSpacingTriggered();
 };

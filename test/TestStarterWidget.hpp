@@ -22,4 +22,5 @@ private:
     void onActionTestRangeSlider();
     void onActionTestDoubleRangeSlider();
     void onActionTestToolBar();
+    void onActionTestBadge();
 };

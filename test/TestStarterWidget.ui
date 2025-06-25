@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>197</width>
-    <height>195</height>
+    <height>198</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -53,6 +53,13 @@
     <widget class="QPushButton" name="buttonToolBar">
      <property name="text">
       <string>工具栏</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="buttonBadge">
+     <property name="text">
+      <string>徽标</string>
      </property>
     </widget>
    </item>

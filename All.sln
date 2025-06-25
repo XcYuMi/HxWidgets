@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HxWidgets", "VisualStudio\Projects\HxWidgets.vcxproj", "{467BBDD5-43BB-4E32-8F26-A19C16C92877}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Test", "VisualStudio\Projects\Test.vcxproj", "{02DD40A7-9F46-4286-A072-64D8F2B08A16}"
+	ProjectSection(ProjectDependencies) = postProject
+		{467BBDD5-43BB-4E32-8F26-A19C16C92877} = {467BBDD5-43BB-4E32-8F26-A19C16C92877}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

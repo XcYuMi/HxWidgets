@@ -7,6 +7,7 @@
 #include "RangeSliderTestWidget.hpp"
 #include "DoubleRangeSliderTestWidget.hpp"
 #include "ToolBarTestWidget.hpp"
+#include "BadgeTestWidget.hpp"
 
 TestStarterWidget::~TestStarterWidget() {
     delete ui;
@@ -14,7 +15,7 @@ TestStarterWidget::~TestStarterWidget() {
 
 TestStarterWidget::TestStarterWidget(QWidget *parent) : QWidget(parent) , ui(new Ui::TestStarterWidget) {
     ui->setupUi(this);
-    setWindowFlags(Qt::Widget | Qt::WindowCloseButtonHint);
+    setWindowFlags(Qt::Window | Qt::WindowCloseButtonHint);
 
     connect(ui->buttonFlowLayout, &QPushButton::clicked, this, &TestStarterWidget::onButtonFlowLayoutClicked);
     connect(ui->buttonAnchorLayout, &QPushButton::clicked, this, &TestStarterWidget::onActionTestAnchorLayout);
@@ -22,6 +23,7 @@ TestStarterWidget::TestStarterWidget(QWidget *parent) : QWidget(parent) , ui(new
     connect(ui->buttonRangeSlider, &QPushButton::clicked, this, &TestStarterWidget::onActionTestRangeSlider);
     connect(ui->buttonFloatRangeSlider, &QPushButton::clicked, this, &TestStarterWidget::onActionTestDoubleRangeSlider);
     connect(ui->buttonToolBar, &QPushButton::clicked, this, &TestStarterWidget::onActionTestToolBar);
+    connect(ui->buttonBadge, &QPushButton::clicked, this, &TestStarterWidget::onActionTestBadge);
 }
 
 void TestStarterWidget::onButtonFlowLayoutClicked() {
@@ -61,6 +63,13 @@ void TestStarterWidget::onActionTestDoubleRangeSlider() {
 
 void TestStarterWidget::onActionTestToolBar() {
     const auto widget = new ToolBarTestWidget(this);
+    widget->setWindowFlag(Qt::Window);
+    widget->setAttribute(Qt::WA_DeleteOnClose);
+    widget->show();
+}
+
+void TestStarterWidget::onActionTestBadge() {
+    const auto widget = new BadgeTestWidget(this);
     widget->setWindowFlag(Qt::Window);
     widget->setAttribute(Qt::WA_DeleteOnClose);
     widget->show();

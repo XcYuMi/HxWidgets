@@ -32,7 +32,7 @@ public:
 
     struct BoxLayoutParams {
         QBoxLayout::Direction direction = QBoxLayout::LeftToRight;
-        Qt::Alignment alignment;
+        Qt::Alignment alignment = Qt::AlignCenter | Qt::AlignLeft;
         int spacing = 3;
     };
 
@@ -46,6 +46,7 @@ public:
 
 public:
     void addWidget(QWidget *widget, int stretch = 0);
+    void removeWidget(QWidget *widget);
     void addToolButton(QToolButton *button);
     QToolButton *addToolButton(const ActionParams &params);
     void addAction(QAction *action);
@@ -53,6 +54,7 @@ public:
     void addStretch(int stretch, const QString &name = "");
     void addSpacing(int spacing, const QString &name = "");
     void addSeparator(const QString &name = "");
+    Qt::Orientation orientation() const;
 
 public:
     QMargins margins() const;

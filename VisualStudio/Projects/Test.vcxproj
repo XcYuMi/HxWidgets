@@ -18,6 +18,7 @@
     <ClCompile Include="..\..\Test\NestedSplitterTestWidget.cpp" />
     <ClCompile Include="..\..\Test\RangeSliderTestWidget.cpp" />
     <ClCompile Include="..\..\Test\TestStarterWidget.cpp" />
+    <ClCompile Include="..\..\Test\ToolBarTestWidget.cpp" />
     <ClCompile Include="..\..\Test\WidgetsTestGlobal.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -42,8 +43,15 @@
     <QtUic Include="..\..\Test\TestStarterWidget.ui" />
   </ItemGroup>
   <ItemGroup>
+    <QtMoc Include="..\..\Test\ToolBarTestWidget.hpp" />
     <ClInclude Include="..\..\Test\ui_TestStarterWidget.h" />
     <ClInclude Include="..\..\Test\WidgetsTestGlobalPrivate.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="..\..\Test\resources\stylesheets.qrc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Test\resources\stylesheets\ToolBarTestWidget.css" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{02DD40A7-9F46-4286-A072-64D8F2B08A16}</ProjectGuid>

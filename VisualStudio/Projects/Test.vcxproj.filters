@@ -47,6 +47,9 @@
     <ClCompile Include="..\..\Test\WidgetsTestGlobal.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Test\ToolBarTestWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="..\..\Test\AnchorLayoutTestWidget.hpp">
@@ -80,5 +83,18 @@
     <ClInclude Include="..\..\Test\WidgetsTestGlobalPrivate.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <QtMoc Include="..\..\Test\ToolBarTestWidget.hpp">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="..\..\Test\resources\stylesheets.qrc">
+      <Filter>Resource Files</Filter>
+    </QtRcc>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Test\resources\stylesheets\ToolBarTestWidget.css">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

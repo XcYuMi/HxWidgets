@@ -16,6 +16,7 @@ QT += widgets
 
 SOURCES += \
     AnchorLayoutTestWidget.cpp \
+    BadgeTestWidget.cpp \
     DoubleRangeSliderTestWidget.cpp \
     FlowLayoutTestWidget.cpp \
     NestedSplitterTestWidget.cpp \
@@ -27,6 +28,7 @@ SOURCES += \
 
 HEADERS += \
     AnchorLayoutTestWidget.hpp \
+    BadgeTestWidget.hpp \
     DoubleRangeSliderTestWidget.hpp \
     FlowLayoutTestWidget.hpp \
     NestedSplitterTestWidget.hpp \
@@ -49,3 +51,6 @@ message(IncludePath = $$absolute_path($$HXWIDGETS_SRC_PATH))
 win32:CONFIG(release, debug|release): LIBS += -L$$HXWIDGETS_LIB_PATH -lHxWidgets
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$HXWIDGETS_LIB_PATH -lHxWidgetsd
 include($$HXWIDGETS_SRC_PATH/HxWidgets.pri)
+
+RESOURCES += \
+    resources/stylesheets.qrc
