@@ -90,7 +90,7 @@ protected:
 public:
     ~HxBagdeManager();
     static HxBagdeManager *instance();
-    HxBadge *addBadge(QWidget *widget, HxBadge *badge);
+    void addBadge(QWidget *widget, HxBadge *badge);
 protected:
 
 };
@@ -104,13 +104,15 @@ class HxBadgeTargetTrack : public QObject {
 public:
     explicit HxBadgeTargetTrack(QObject *parent = nullptr) : QObject{parent} {}
     virtual ~HxBadgeTargetTrack() {}
+    static QRect calculateBadgeGeometry(const QRect &targetRect, const QRect &badgeGeometry, const QPoint &offset, HxBadge::Position position, HxBadge::Position anchor);
 };
 
 class HxWidgetBadgeTrack : public HxBadgeTargetTrack {
     Q_OBJECT
+    using Super = HxBadgeTargetTrack;
 public:
-    explicit HxWidgetBadgeTrack(QObject *parent = nullptr);
-    ~HxWidgetBadgeTrack();
+    explicit HxWidgetBadgeTrack(QObject *parent = nullptr) : HxBadgeTargetTrack{parent} {}
+    ~HxWidgetBadgeTrack() {}
     void updateBadge(QWidget *widget, HxBadge *badge);
 protected:
     bool eventFilter(QObject *watched, QEvent *event) override;

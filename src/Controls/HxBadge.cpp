@@ -21,9 +21,9 @@ HxBadge::~HxBadge() {
 }
 
 HxBadge::HxBadge(QWidget *parent) : QFrame{parent} {
+    d.reset(new HxBadgePrivate);
     setFrameShape(QFrame::NoFrame);
 }
-
 
 void HxBadge::setPosition(Position position){
     if(d->position == position) {
@@ -65,8 +65,21 @@ QPoint HxBadge::offset() const {
 }
 
 
-HxTextBadge *HxBadge::addTextBadge(QWidget *widget, BadgePosition position, const QPoint &offset) {
+HxTextBadge *HxBadge::addTextBadge(QWidget *widget, Position position, const QPoint &offset) {
+    const auto badge = new HxTextBadge;
+    badge->setPosition(position);
+    badge->setOffset(offset);
+    bageManager()->addBadge(widget, badge);
+    return badge;
+}
 
+HxIconBadge *HxBadge::addIconBadge(QWidget *widget, Position position, const QPoint &offset)
+{
+    const auto badge = new HxIconBadge;
+    badge->setPosition(position);
+    badge->setOffset(offset);
+    bageManager()->addBadge(widget, badge);
+    return badge;
 }
 
 /// BadgeManager ///
@@ -104,12 +117,12 @@ HxBagdeManager *HxBagdeManager::instance() {
     return singleton;
 }
 
-HxBadge *HxBagdeManager::addBadge(QWidget *widget, HxBadge *badge) {
+void HxBagdeManager::addBadge(QWidget *widget, HxBadge *badge) {
     if(!d->widgetBadgeHash.contains(widget)){
         widget->installEventFilter(d->widgetBadgeTracker);
     }
 
-    d->widgetBadgeHash.insert(widget, data);
+    d->widgetBadgeHash.insert(widget, badge);
     d->widgetBadgeTracker->updateBadge(widget, badge);
 }
 
@@ -211,6 +224,7 @@ QSize HxIconBadge::iconSize() const {
 }
 
 void HxIconBadge::paintEvent(QPaintEvent *event) {
+    Q_UNUSED(event);
     QPainter painter(this);
     painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 
@@ -225,24 +239,45 @@ void HxIconBadge::paintEvent(QPaintEvent *event) {
 }
 
 void HxWidgetBadgeTrack::updateBadge(QWidget *widget, HxBadge *badge) {
-    auto parentWidget = widget->parent();
+    auto parentWidget = widget->parentWidget();
     if(parentWidget == nullptr) {
         parentWidget = widget;
     }
 
     badge->setParent(parentWidget);
-
     badge->adjustSize();
 
-    const auto &rct = widget->geometry();
-
-    auto rect = badge->geometry();
+    const auto &widgetGeometry = widget->geometry();
+    const auto &badgeRect = badge->geometry();
 
     const auto &offset = badge->offset();
-    using Position = HxBadge::Position;
     const auto position = badge->position();
     const auto anchor = badge->anchor();
+    const auto &rect = calculateBadgeGeometry(widgetGeometry, badgeRect, offset, position, anchor);
+
+    badge->move(rect.topLeft());
+    badge->raise();
+    badge->show();
+}
+
+bool HxWidgetBadgeTrack::eventFilter(QObject *watched, QEvent *event)
+{
+    const bool result = Super::eventFilter(watched, event);
+    return result;
+}
+
+QRect HxBadgeTargetTrack::calculateBadgeGeometry(const QRect &targetRect,
+                                                 const QRect &badgeGeometry,
+                                                 const QPoint &offset,
+                                                 HxBadge::Position position,
+                                                 HxBadge::Position anchor)
+{
+    const auto &rct = targetRect;
+    using Position = HxBadge::Position;
+
+    auto rect = badgeGeometry;
     QPoint point;
+
     switch(position) {
     case Position::Top:
         point.rx() = rct.center().x();
@@ -253,10 +288,67 @@ void HxWidgetBadgeTrack::updateBadge(QWidget *widget, HxBadge *badge) {
         break;
     case Position::TopRight:
         point = rct.topRight();
+        break;
     case Position::Left:
-
+        point.rx() = rct.left();
+        point.ry() = rct.center().y();
+        break;
+    case Position::Center:
+        point = rct.center();
+        break;
+    case Position::Right:
+        point.rx() = rct.right();
+        point.ry() = rct.center().y();
+        break;
+    case Position::BottomLeft:
+        point = rct.bottomLeft();
+        break;
+    case Position::Bottom:
+        point.rx() = rct.center().x();
+        point.ry() = rct.bottom();
+    case Position::BottomRight:
+        point = rct.bottomRight();
+    default:
+        break;
     }
 
-    badge->raise();
+    point += offset;
 
+    switch (anchor) {
+    case Position::TopLeft:
+        rect.moveTopLeft(point);
+        break;
+    case Position::Top:
+        rect.moveCenter(point);
+        rect.moveTop(point.y());
+        break;
+    case Position::TopRight:
+        rect.moveTopRight(point);
+        break;
+    case Position::Left:
+        rect.moveCenter(point);
+        rect.moveLeft(point.x());
+        break;
+    case Position::Center:
+        rect.moveCenter(point);
+        break;
+    case Position::Right:
+        rect.moveCenter(point);
+        rect.moveRight(point.x());
+        break;
+    case Position::BottomLeft:
+        rect.moveBottomLeft(point);
+        break;
+    case Position::Bottom:
+        rect.moveCenter(point);
+        rect.moveBottom(point.y());
+        break;
+    case Position::BottomRight:
+        rect.moveBottomRight(point);
+        break;
+    default:
+        break;
+    }
+
+    return rect;
 }

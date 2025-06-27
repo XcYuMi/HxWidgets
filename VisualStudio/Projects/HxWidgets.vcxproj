@@ -14,6 +14,7 @@
     <ClCompile Include="..\..\Src\Containers\HxToolBar.cpp" />
     <ClCompile Include="..\..\Src\Containers\NestedSplitter.cpp" />
     <ClCompile Include="..\..\Src\Controls\DoubleRangerSlider.cpp" />
+    <ClCompile Include="..\..\Src\Controls\HxBadge.cpp" />
     <ClCompile Include="..\..\Src\Controls\RangeSlider.cpp" />
     <ClCompile Include="..\..\Src\Globals\HxWidgetsGlobal.cpp" />
     <ClCompile Include="..\..\Src\Globals\HxWidgetsNamespace.cpp" />
@@ -21,14 +22,15 @@
     <ClCompile Include="..\..\Src\Layouts\FlowLayout.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <QtMoc Include="..\..\Src\Globals\WidgetUtils.hpp" />
     <QtMoc Include="..\..\Src\Layouts\FlowLayout.hpp" />
     <QtMoc Include="..\..\Src\Containers\NestedSplitter.hpp" />
     <QtMoc Include="..\..\Src\Controls\RangeSlider.hpp" />
     <QtMoc Include="..\..\Src\Controls\DoubleRangerSlider.hpp" />
     <QtMoc Include="..\..\Src\Containers\HxToolBar.hpp" />
+    <QtMoc Include="..\..\Src\Controls\HxBadge.hpp" />
     <ClInclude Include="..\..\Src\Globals\HxWidgetsGlobal.hpp" />
     <ClInclude Include="..\..\Src\Globals\HxWidgetsGlobalPrivate.hpp" />
-    <ClInclude Include="..\..\Src\Globals\WidgetUtils.hpp" />
     <QtMoc Include="..\..\Src\Globals\HxWidgetsNamespace.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

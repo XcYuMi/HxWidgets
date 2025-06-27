@@ -50,6 +50,9 @@
     <ClCompile Include="..\..\Test\ToolBarTestWidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Test\BadgeTestWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="..\..\Test\AnchorLayoutTestWidget.hpp">
@@ -68,6 +71,9 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="..\..\Test\TestStarterWidget.hpp">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="..\..\Test\BadgeTestWidget.hpp">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

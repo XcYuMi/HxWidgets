@@ -29,9 +29,6 @@
     <ClCompile Include="..\..\Src\Globals\HxWidgetsNamespace.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Globals\WidgetUtils.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Src\Controls\DoubleRangerSlider.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -47,15 +44,18 @@
     <ClCompile Include="..\..\Src\Containers\HxToolBar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Src\Controls\HxBadge.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Globals\WidgetUtils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Globals\HxWidgetsGlobal.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\Globals\HxWidgetsGlobalPrivate.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Globals\WidgetUtils.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -75,7 +75,13 @@
     <QtMoc Include="..\..\Src\Layouts\FlowLayout.hpp">
       <Filter>Header Files</Filter>
     </QtMoc>
-	<QtMoc Include="..\..\Src\Containers\HxToolBar.hpp">
+    <QtMoc Include="..\..\Src\Containers\HxToolBar.hpp">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="..\..\Src\Controls\HxBadge.hpp">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="..\..\Src\Globals\WidgetUtils.hpp">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

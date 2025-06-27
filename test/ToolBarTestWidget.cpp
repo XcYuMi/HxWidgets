@@ -1,6 +1,7 @@
 ﻿#include "ToolBarTestWidget.hpp"
 #include "WidgetsTestGlobalPrivate.hpp"
 #include "HxToolBar.hpp"
+#include "WidgetUtils.hpp"
 
 #include <QStyle>
 #include <QVBoxLayout>
@@ -103,7 +104,10 @@ void ToolBarTestWidget::ToolBarTestWidgetUi::setupUi(ToolBarTestWidget *widget)
             layout->addRow("间距", slider);
         }
 
-        actionAddAction = editorBar->addAction("", _this, &ToolBarTestWidget::onAddActionTriggered);
+        //actionAddAction = editorBar->addAction("", _this, &ToolBarTestWidget::onAddActionTriggered);
+        actionAddAction = HxWidgetUtils::addAction(_this, QString(), _this, &ToolBarTestWidget::onAddActionTriggered);
+        actionAddAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_A));
+        //editorBar->addAction(actionAddAction);
         actionAddSeparator = editorBar->addAction("", _this, &ToolBarTestWidget::onAddSeparatorTriggered);
         actionAddStretch = editorBar->addAction("", _this, &ToolBarTestWidget::onAddStretchTriggered);
         actionAddSpacing = editorBar->addAction("", _this, &ToolBarTestWidget::onAddSpacingTriggered);   

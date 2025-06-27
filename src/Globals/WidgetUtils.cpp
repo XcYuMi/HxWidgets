@@ -6,21 +6,36 @@
 #include <QSpinBox>
 #include <QSlider>
 
-HX_USING_NAMESPACE;
-
 ///////////////////////////////////////////////////////// QWidget //////////////////////////////////////////////////////
 
-void WidgetUtils::setWidth(QWidget *widget, int width) {
+void HxWidgetUtils::setWidth(QWidget *widget, int width) {
     widget->resize(width, widget->height());
 }
 
-void WidgetUtils::setHeight(QWidget *widget, int height) {
+void HxWidgetUtils::setHeight(QWidget *widget, int height) {
     widget->resize(widget->width(), height);
+}
+
+///////////////////////////////////////////////////////// QWidget::addAction //////////////////////////////////////////////////////
+
+QAction *HxWidgetUtils::addAction(QWidget *widget, const QString &text) {
+    const auto action = new QAction(widget);
+    action->setText(text);
+    widget->addAction(action);
+    return action;
+}
+
+QAction *HxWidgetUtils::addAction(QWidget *widget, const QIcon &icon, const QString &text) {
+    const auto action = new QAction(widget);
+    action->setIcon(icon);
+    action->setText(text);
+    widget->addAction(action);
+    return action;
 }
 
 ///////////////////////////////////////////////////////// COmboBox /////////////////////////////////////////////////////
 
-void WidgetUtils::SetComboxBoxCurrentData(QComboBox *control, const QVariant &data, bool blockSignal) {
+void HxWidgetUtils::SetComboxBoxCurrentData(QComboBox *control, const QVariant &data, bool blockSignal) {
     if(blockSignal)
         control->blockSignals(true);
 
@@ -33,7 +48,7 @@ void WidgetUtils::SetComboxBoxCurrentData(QComboBox *control, const QVariant &da
 
 ///////////////////////////////////////////////////////// QSpinBox /////////////////////////////////////////////////////
 
-void WidgetUtils::SetSpinBoxValue(QSpinBox *control, int value, bool blockSignal) {
+void HxWidgetUtils::SetSpinBoxValue(QSpinBox *control, int value, bool blockSignal) {
     if(blockSignal)
         control->blockSignals(true);
 
@@ -45,7 +60,7 @@ void WidgetUtils::SetSpinBoxValue(QSpinBox *control, int value, bool blockSignal
 
 
 ///////////////////////////////////////////////////////// QSlider /////////////////////////////////////////////////////
-void WidgetUtils::SetSliderValue(QSlider *control, int value, bool blockSignal) {
+void HxWidgetUtils::SetSliderValue(QSlider *control, int value, bool blockSignal) {
     if(blockSignal)
         control->blockSignals(true);
 

@@ -79,6 +79,7 @@ include(Containers/Containers.pri)
 include(WindowSystem/WindowSystem.pri)
 include(Dialogs/Dialogs.pri)
 include(DockSystem/DockSystem.pri)
+include(ItemView/ItemView.pri)
 
 TRANSLATIONS += \
     src_en_US.ts

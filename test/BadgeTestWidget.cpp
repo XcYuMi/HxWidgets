@@ -103,7 +103,7 @@ void BadgeTestWidget::BadgeTestWidgetUi::initWidgetPage() {
             buttonWidthBadge = button;
             boxLayout->addWidget(button);
 
-            const auto topRightBage = HxBadge::addIconBadge(button, HxBadge::BadgePosition::TopRight, QPoint(0,0));
+            const auto topRightBage = HxBadge::addIconBadge(button, HxBadge::Position::TopRight, QPoint(0,0));
             topRightBage->setPicture(gRedPointPicture);
         }
         if(const auto label = new QLabel) {

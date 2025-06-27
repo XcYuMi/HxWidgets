@@ -132,11 +132,11 @@ void NestedSplitter::calculateGeometry(QWidget* widget, const QRect& available) 
             if (it.value().second == Qt::Horizontal) {
                 childRect = QRect(available.right() - handler->width(), available.top(),
                                   available.width() - handler->width(), available.height());
-                WidgetUtils::setWidth(widget,available.width() - childRect.width() - handler->width());
+                HxWidgetUtils::setWidth(widget,available.width() - childRect.width() - handler->width());
             } else {
                 childRect = QRect(available.left(), available.bottom() - handler->height(),
                                   available.width(), available.height() - handler->height());
-                WidgetUtils::setHeight(widget, available.height() - childRect.height() - handler->height());
+                HxWidgetUtils::setHeight(widget, available.height() - childRect.height() - handler->height());
             }
             calculateGeometry(it.key(), childRect);
         }

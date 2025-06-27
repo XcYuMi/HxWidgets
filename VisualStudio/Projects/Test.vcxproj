@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Test\AnchorLayoutTestWidget.cpp" />
+    <ClCompile Include="..\..\Test\BadgeTestWidget.cpp" />
     <ClCompile Include="..\..\Test\DoubleRangeSliderTestWidget.cpp" />
     <ClCompile Include="..\..\Test\FlowLayoutTestWidget.cpp" />
     <ClCompile Include="..\..\Test\main.cpp" />
@@ -44,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="..\..\Test\ToolBarTestWidget.hpp" />
+    <QtMoc Include="..\..\Test\BadgeTestWidget.hpp" />
     <ClInclude Include="..\..\Test\ui_TestStarterWidget.h" />
     <ClInclude Include="..\..\Test\WidgetsTestGlobalPrivate.hpp" />
   </ItemGroup>

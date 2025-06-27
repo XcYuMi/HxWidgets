@@ -3,8 +3,6 @@
 #include "FlowLayout.hpp"
 #include "WidgetUtils.hpp"
 
-using Hx::WidgetUtils;
-
 #include <QContextMenuEvent>
 #include <QMetaEnum>
 
@@ -158,10 +156,10 @@ QWidget *FlowLayoutTestWidget::FlowLayoutTestWidgetUi::contextMenu()
         layout->addRow(labelHorSpacing, layoutHorSpacing);
         connect(sliderHorSpacing, &QSlider::valueChanged, flowLayout, [=](int value) {
             flowLayout->setHorizontalSpacing(value);
-            WidgetUtils::SetSpinBoxValue(spinHorSpacing, value);
+            HxWidgetUtils::SetSpinBoxValue(spinHorSpacing, value);
         });
         connect(spinHorSpacing, qOverload<int>(&QSpinBox::valueChanged), sliderHorSpacing, [=](int value) {
-            WidgetUtils::SetSliderValue(sliderHorSpacing, value, true);
+            HxWidgetUtils::SetSliderValue(sliderHorSpacing, value, true);
         });
 
         labelVerSpacing = new QLabel(menu);
@@ -175,10 +173,10 @@ QWidget *FlowLayoutTestWidget::FlowLayoutTestWidgetUi::contextMenu()
         layout->addRow(labelVerSpacing, layoutVerSpacing);
         connect(sliderVerSpacing, &QSlider::valueChanged, flowLayout, [=](int value) {
             flowLayout->setVerticalSpacing(value);
-            WidgetUtils::SetSpinBoxValue(spinVerSpacing, value);
+            HxWidgetUtils::SetSpinBoxValue(spinVerSpacing, value);
         });
         connect(spinVerSpacing, qOverload<int>(&QSpinBox::valueChanged), sliderVerSpacing, [=](int value) {
-            WidgetUtils::SetSliderValue(sliderVerSpacing, value, true);
+            HxWidgetUtils::SetSliderValue(sliderVerSpacing, value, true);
         });
     }
 
@@ -201,15 +199,15 @@ void FlowLayoutTestWidget::FlowLayoutTestWidgetUi::retranslateMenuUi() {
 
 void FlowLayoutTestWidget::FlowLayoutTestWidgetUi::initContextMenu()
 {
-    WidgetUtils::SetComboxBoxCurrentData(selectorFlowOrder, QVariant::fromValue<Hx::FlowLayout::FlowOrder>(flowLayout->flowOrder()));
-    WidgetUtils::SetComboxBoxCurrentData(selectorHorFlow, QVariant::fromValue<Hx::FlowLayout::HorizontalFlowDirection>(flowLayout->horizontalFlow()));
-    WidgetUtils::SetComboxBoxCurrentData(selectorVerFlow, QVariant::fromValue<Hx::FlowLayout::VerticalFlowDirection>(flowLayout->verticalFlow()));
+    HxWidgetUtils::SetComboxBoxCurrentData(selectorFlowOrder, QVariant::fromValue<Hx::FlowLayout::FlowOrder>(flowLayout->flowOrder()));
+    HxWidgetUtils::SetComboxBoxCurrentData(selectorHorFlow, QVariant::fromValue<Hx::FlowLayout::HorizontalFlowDirection>(flowLayout->horizontalFlow()));
+    HxWidgetUtils::SetComboxBoxCurrentData(selectorVerFlow, QVariant::fromValue<Hx::FlowLayout::VerticalFlowDirection>(flowLayout->verticalFlow()));
 
-    WidgetUtils::SetSpinBoxValue(spinHorSpacing, flowLayout->horizontalSpacing());
-    WidgetUtils::SetSliderValue(sliderHorSpacing, flowLayout->horizontalSpacing());
+    HxWidgetUtils::SetSpinBoxValue(spinHorSpacing, flowLayout->horizontalSpacing());
+    HxWidgetUtils::SetSliderValue(sliderHorSpacing, flowLayout->horizontalSpacing());
 
-    WidgetUtils::SetSpinBoxValue(spinVerSpacing, flowLayout->verticalSpacing());
-    WidgetUtils::SetSliderValue(sliderVerSpacing, flowLayout->verticalSpacing());
+    HxWidgetUtils::SetSpinBoxValue(spinVerSpacing, flowLayout->verticalSpacing());
+    HxWidgetUtils::SetSliderValue(sliderVerSpacing, flowLayout->verticalSpacing());
 }
 
 void FlowLayoutTestWidget::contextMenuEvent(QContextMenuEvent *event) {

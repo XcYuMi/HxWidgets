@@ -1,8 +1,7 @@
 ﻿#pragma once
 #include <QObject>
 
-class Hx
-{
+class Hx : public QObject {
     Q_GADGET
 public:
 
