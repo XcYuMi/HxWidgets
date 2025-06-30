@@ -8,6 +8,7 @@
 #include "DoubleRangeSliderTestWidget.hpp"
 #include "ToolBarTestWidget.hpp"
 #include "BadgeTestWidget.hpp"
+#include "SettingsDialogSearchTestWidget.hpp"
 
 TestStarterWidget::~TestStarterWidget() {
     delete ui;
@@ -24,6 +25,7 @@ TestStarterWidget::TestStarterWidget(QWidget *parent) : QWidget(parent) , ui(new
     connect(ui->buttonFloatRangeSlider, &QPushButton::clicked, this, &TestStarterWidget::onActionTestDoubleRangeSlider);
     connect(ui->buttonToolBar, &QPushButton::clicked, this, &TestStarterWidget::onActionTestToolBar);
     connect(ui->buttonBadge, &QPushButton::clicked, this, &TestStarterWidget::onActionTestBadge);
+    connect(ui->buttonSettingsDialogSearch, &QPushButton::clicked, this, &TestStarterWidget::onActionSettingsDialogSearch);
 }
 
 void TestStarterWidget::onButtonFlowLayoutClicked() {
@@ -70,6 +72,14 @@ void TestStarterWidget::onActionTestToolBar() {
 
 void TestStarterWidget::onActionTestBadge() {
     const auto widget = new BadgeTestWidget(this);
+    widget->setWindowFlag(Qt::Window);
+    widget->setAttribute(Qt::WA_DeleteOnClose);
+    widget->show();
+}
+
+void TestStarterWidget::onActionSettingsDialogSearch()
+{
+    const auto widget = new SettingsDialogSearchTestWidget(this);
     widget->setWindowFlag(Qt::Window);
     widget->setAttribute(Qt::WA_DeleteOnClose);
     widget->show();

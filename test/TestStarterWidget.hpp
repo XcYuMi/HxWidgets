@@ -23,4 +23,5 @@ private:
     void onActionTestDoubleRangeSlider();
     void onActionTestToolBar();
     void onActionTestBadge();
+    void onActionSettingsDialogSearch();
 };

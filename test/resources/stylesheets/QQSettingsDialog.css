@@ -1,0 +1,62 @@
+﻿QQSettingsDialog {
+    background-color: yellow;
+}
+
+QQSettingsDialog QFrame, QQSettingsDialog QScrollArea {
+    background-color: yellow;
+}
+
+QQSettingsDialog HxSettingsNavigationBar {
+    background-color: #EDEDED;
+    qproperty-spacing: 6px;
+}
+
+QQSettingsDialog HxSettingsNavigationBar QFrame#PageButtonsFrame {
+    background-color: red;
+    padding: 8px 8px 8px 8px;
+}
+
+QQSettingsDialog HxSettingsNavigationBar QToolButton {
+    min-width: 184px;
+    max-width: 184px;
+    min-height: 36px;
+    max-height: 36px;
+    border-radius: 6px;
+    background-color: transparent;
+}
+
+QQSettingsDialog QToolButton#PageButton:checked {
+    background-color: #DBDBDB;
+}
+
+QQSettingsDialog QToolButton#PageButton:hover {
+    background-color: #E4E4E4;
+}
+
+QQSettingsDialog QToolButton#PageButton:pressed {
+    background-color: #D0D0D0;
+}
+
+QQSettingsDialog HxSettingsPage {
+    qproperty-spacing: 0px;
+}
+
+QQSettingsDialog HxSettingsPage QFrame#ContentsFrame{
+    background-color: blue;  
+    padding: 6px 6px 6px 6px;
+}
+
+QQSettingsDialog HxSettingsGroup QFrame#ContentsFrame{
+    background-color: green;
+    border-radius: 0px;
+    padding: 0px 0px 0px 0px;
+}
+
+QQSettingsDialog HxSettingsGroup QLabel#TitleLabel{
+    background-color: red;
+}
+
+QQSettingsDialog HxSettingsGroup QLabel#SettiingsFiledLabel{
+    background-color: orange;
+}
+

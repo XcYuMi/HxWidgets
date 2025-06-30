@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>197</width>
-    <height>198</height>
+    <height>228</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -60,6 +60,13 @@
     <widget class="QPushButton" name="buttonBadge">
      <property name="text">
       <string>徽标</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="buttonSettingsDialogSearch">
+     <property name="text">
+      <string>设置对话框搜索</string>
      </property>
     </widget>
    </item>

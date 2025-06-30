@@ -9,3 +9,4 @@ INCLUDEPATH += $$PWD/Layouts
 INCLUDEPATH += $$PWD/Controls
 INCLUDEPATH += $$PWD/Containers
 INCLUDEPATH += $$PWD/DockSystem
+INCLUDEPATH += $$PWD/Dialogs

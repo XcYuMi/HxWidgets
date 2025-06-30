@@ -16,6 +16,7 @@
     <ClCompile Include="..\..\Src\Controls\DoubleRangerSlider.cpp" />
     <ClCompile Include="..\..\Src\Controls\HxBadge.cpp" />
     <ClCompile Include="..\..\Src\Controls\RangeSlider.cpp" />
+    <ClCompile Include="..\..\Src\Dialogs\HxSettingsDialog.cpp" />
     <ClCompile Include="..\..\Src\Globals\HxWidgetsGlobal.cpp" />
     <ClCompile Include="..\..\Src\Globals\HxWidgetsNamespace.cpp" />
     <ClCompile Include="..\..\Src\Globals\WidgetUtils.cpp" />
@@ -29,6 +30,7 @@
     <QtMoc Include="..\..\Src\Controls\DoubleRangerSlider.hpp" />
     <QtMoc Include="..\..\Src\Containers\HxToolBar.hpp" />
     <QtMoc Include="..\..\Src\Controls\HxBadge.hpp" />
+    <QtMoc Include="..\..\Src\Dialogs\HxSettingsDialog.hpp" />
     <ClInclude Include="..\..\Src\Globals\HxWidgetsGlobal.hpp" />
     <ClInclude Include="..\..\Src\Globals\HxWidgetsGlobalPrivate.hpp" />
     <QtMoc Include="..\..\Src\Globals\HxWidgetsNamespace.hpp" />

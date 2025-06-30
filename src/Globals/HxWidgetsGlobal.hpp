@@ -21,6 +21,14 @@
 #include <QScopedPointer>
 #include <QPointer>
 
+// 容器类
+#include <QList>
+#include <QSet>
+#include <QHash>
+#include <QMap>
+#include <QMultiHash>
+#include <QMultiMap>
+
 // 类数据指针申明宏
 #define HX_DECLARE_PRIVATE(T) \
     class T##Private; \

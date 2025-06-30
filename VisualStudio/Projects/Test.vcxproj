@@ -18,6 +18,7 @@
     <ClCompile Include="..\..\Test\main.cpp" />
     <ClCompile Include="..\..\Test\NestedSplitterTestWidget.cpp" />
     <ClCompile Include="..\..\Test\RangeSliderTestWidget.cpp" />
+    <ClCompile Include="..\..\Test\SettingsDialogSearchTestWidget.cpp" />
     <ClCompile Include="..\..\Test\TestStarterWidget.cpp" />
     <ClCompile Include="..\..\Test\ToolBarTestWidget.cpp" />
     <ClCompile Include="..\..\Test\WidgetsTestGlobal.cpp" />
@@ -46,6 +47,7 @@
   <ItemGroup>
     <QtMoc Include="..\..\Test\ToolBarTestWidget.hpp" />
     <QtMoc Include="..\..\Test\BadgeTestWidget.hpp" />
+    <QtMoc Include="..\..\Test\SettingsDialogSearchTestWidget.hpp" />
     <ClInclude Include="..\..\Test\ui_TestStarterWidget.h" />
     <ClInclude Include="..\..\Test\WidgetsTestGlobalPrivate.hpp" />
   </ItemGroup>
