@@ -27,6 +27,7 @@ public:
     }
 protected:
     void paintEvent(QPaintEvent *event) {
+        Q_UNUSED(event);
         QPainter painter(this);
         painter.fillRect(rect(), mColor);
     }

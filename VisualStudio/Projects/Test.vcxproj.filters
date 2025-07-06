@@ -108,5 +108,8 @@
     <None Include="..\..\Test\resources\stylesheets\ToolBarTestWidget.css">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="..\..\Test\resources\stylesheets\QQSettingsDialog.css">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

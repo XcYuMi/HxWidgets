@@ -110,6 +110,7 @@ void HxItemViewPaintHelper::mouseMoveEvent(QAbstractItemView *view, State state,
 
 void HxItemViewPaintHelper::paintEvent(QAbstractItemView *view, QPainter *painter, QPaintEvent *event)
 {
+    Q_UNUSED(event);
     const auto selectionModel = view->selectionModel();
     if (selectionModel == nullptr)
         return;
@@ -211,6 +212,7 @@ bool HxItemViewPaintHelper::isItemHoverPaintOptimizationEnabled(QAbstractItemVie
 
 void HxItemViewPaintHelper::onViewVerticalScrollBarValueChanged(QAbstractItemView *view, int value)
 {
+    Q_UNUSED(value);
     const auto &posInVp = view->viewport()->mapFromGlobal(QCursor::pos());
     if (view->viewport()->rect().contains(posInVp)) 
     {
@@ -221,6 +223,7 @@ void HxItemViewPaintHelper::onViewVerticalScrollBarValueChanged(QAbstractItemVie
 
 void HxItemViewPaintHelper::onViewHorizontalScrollBarValueChanged(QAbstractItemView *view, int value) 
 {
+    Q_UNUSED(value);
     const auto &posInVp = view->viewport()->mapFromGlobal(QCursor::pos());
     if (view->viewport()->rect().contains(posInVp)) 
     {
@@ -231,7 +234,7 @@ void HxItemViewPaintHelper::onViewHorizontalScrollBarValueChanged(QAbstractItemV
 
 void HxItemViewPaintHelper::updateIndexes(QAbstractItemView *view, const QModelIndexList &indexes)
 {
-    const int index_count = indexes.count();
+    const int index_count = indexes.count(); Q_UNUSED(index_count);
     const auto selection_behavior = view->selectionBehavior();
     if (selection_behavior != QAbstractItemView::SelectRows)
     {
@@ -256,7 +259,7 @@ void HxItemViewPaintHelper::updateIndexes(QAbstractItemView *view, const QModelI
 
 void HxItemViewPaintHelper::onViewSelectionChanged(QAbstractItemView *view, const QItemSelection &selected, const QItemSelection &deselected)
 {
-    const auto &selectedIndexes = view->selectionModel()->selectedIndexes();
+    const auto &selectedIndexes = selected.indexes();
     const auto &deselectedIndexes = deselected.indexes();
 
     QModelIndexList indexes;
@@ -282,7 +285,7 @@ QPainterPath HxItemViewPaintHelper::createRoundedPathFromRects(const QList<QRect
 
     // 遍历区域的所有轮廓
     const auto &polygons = unitedPolygonsFromRects(rects);
-    const int polygon_count = polygons.count();
+    const int polygon_count = polygons.count(); Q_UNUSED(polygon_count);
 
     // 创建最终路径
     QPainterPath roundedPath;
@@ -323,6 +326,7 @@ QList<QPolygon> HxItemViewPaintHelper::unitedPolygonsFromRects(const QList<QRect
 
 QPainterPath HxItemViewPaintHelper::roundedPolygon(const QPolygon &polygon, int radius, bool closed)
 {
+    Q_UNUSED(closed);
     enum class PolygonCloseMode {
         None,    // 不封闭，仅描边（角部圆角过渡）
         Angle,   // 封闭，首尾角不圆角，中间角圆角
@@ -459,6 +463,7 @@ QPainterPath HxItemViewPaintHelper::roundedPolygon(const QPolygon &polygon, int 
 
 QPainterPath HxItemViewPaintHelper::roundedPolygonV2(const QPolygon &polygon, int radius, bool closed)
 {
+    Q_UNUSED(closed);
     QPainterPath path;
     path.addRoundedRect(polygon.boundingRect(), radius, radius);
     return path;

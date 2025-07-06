@@ -328,5 +328,5 @@ void HxToolBar::setLayoutParams(const HxToolBar::FlowLayoutParams &params) {
 
 void HxToolBar::changeEvent(QEvent *event)
 {
-
+    Q_UNUSED(event);
 }

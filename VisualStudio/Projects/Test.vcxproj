@@ -55,6 +55,7 @@
     <QtRcc Include="..\..\Test\resources\stylesheets.qrc" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\Test\resources\stylesheets\QQSettingsDialog.css" />
     <None Include="..\..\Test\resources\stylesheets\ToolBarTestWidget.css" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

@@ -2,6 +2,7 @@
 #include "TestStarterWidget.hpp"
 #include <QDir>
 #include <QFile>
+#include <QStyle>
 
 void initStyle();
 
@@ -10,20 +11,22 @@ int main(int argc, char *argv[]) {
     QApplication::setHighDpiScaleFactorRoundingPolicy(Qt::HighDpiScaleFactorRoundingPolicy::PassThrough);
 
     QApplication app(argc, argv);
-    initStyle();
+
 
     TestStarterWidget starterWidget;
     starterWidget.show();
+
+    initStyle();
 
     return app.exec();
 }
 
 void initStyle() {
-    QString qss = QStringLiteral(R"(
-* {
-    font: 14px Microsoft YaHei;
-}
-    )");
+    QString qss = 
+"*{" "\n"
+"    font: 14px Microsoft YaHei;" "\n"
+"}" "\n\n"
+;
 
     QDir dir(":/stylesheets/");
     const auto &names = dir.entryList({"*.qss", "*.css"}, QDir::Files | QDir::NoSymLinks);
@@ -41,5 +44,7 @@ void initStyle() {
         file.close();
     }
 
+    qApp->style()->unpolish(qApp);
     qApp->setStyleSheet(qss);
+    qApp->style()->polish(qApp);
 }

@@ -119,7 +119,7 @@ void HxTableView::showEvent(QShowEvent *event)
 
 	d->exposed = true;
 	connect(selectionModel(), &QItemSelectionModel::selectionChanged, this, [=] {
-		int i = 0;
+        int i = 0; Q_UNUSED(i);
 	});
 }
 
@@ -139,6 +139,7 @@ void HxTableView::initViewItemStyleOption(QStyleOptionViewItem *option, const QM
 	const auto &flags = model()->flags(index);
 	auto &state = option->state;
 	auto &palette = option->palette;
+    Q_UNUSED(palette);
 
 	// Rect 
 	if (index.isValid())

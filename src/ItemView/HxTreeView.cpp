@@ -132,6 +132,7 @@ void HxTreeView::initViewItemStyleOption(QStyleOptionViewItem *option, const QMo
 	const auto &flags = model()->flags(index);
 	auto &state = option->state;
 	auto &palette = option->palette;
+    Q_UNUSED(palette);
 
 	// Item矩形
 	if (index.isValid())

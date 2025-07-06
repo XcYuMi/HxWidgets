@@ -11,6 +11,33 @@
 #include <QStackedWidget>
 #include <QLabel>
 #include <QActionGroup>
+#include <QTextEdit>
+
+QString widgetHierarchyText(QWidget *widget) {
+    QWidgetList widgets;
+
+    QWidget *parent = widget;
+    while(parent != nullptr) {
+        widgets.append(parent);
+
+        parent = parent->parentWidget();
+    }
+
+    std::reverse(widgets.begin(), widgets.end());
+
+    QStringList ancesstorInfos;
+    for(const auto widgetPtr : widgets) {
+        const auto &className = widgetPtr->metaObject()->className();
+        const auto &objectName = widgetPtr->objectName();
+        if(objectName.isEmpty()) {
+            ancesstorInfos << QString("%1").arg(className);
+        } else {
+            ancesstorInfos << QString("%1:%2").arg(className).arg(objectName);
+        }
+    }
+    const auto &text = ancesstorInfos.join("->");
+    return text;
+}
 
 class HxSettingsDialog::HxSettingsDialogPrivate {
     HxSettingsDialog *q = nullptr;
@@ -96,24 +123,12 @@ class HxSettingsNavigationBar::HxSettingsNavigationBarUi {
 public:
     void setupUi(HxSettingsNavigationBar *bar);
 public:
-    QScrollArea *pageButtonScrollArea = nullptr;
-    QFrame *contentsFrame = nullptr;
-    QVBoxLayout *contentsLayout = nullptr;
+    QScrollArea* contentsScrollArea = nullptr;
+    HxSettingBoxLayoutFrame *contentsFrame = nullptr;
 };
 
 HxSettingsNavigationBar::~HxSettingsNavigationBar() {
 
-}
-
-void HxSettingsNavigationBar::setSpacing(int spacing) {
-    if(d->spacing == spacing)
-        return;
-    d->spacing = spacing;
-    ui->contentsLayout->setSpacing(spacing);
-}
-
-int HxSettingsNavigationBar::spacing() const {
-    return d->spacing;
 }
 
 HxSettingsNavigationBar::HxSettingsNavigationBar(QWidget *parent) : Super{parent} {
@@ -128,27 +143,22 @@ void HxSettingsNavigationBar::HxSettingsNavigationBarUi::setupUi(HxSettingsNavig
     _this->setFrameShape(QFrame::NoFrame);
 
     const auto layout = new QVBoxLayout(_this);
-    layout->setContentsMargins(0,0,0,0);
+    layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(0);
 
-    pageButtonScrollArea = new QScrollArea(_this);
-    layout->addWidget(pageButtonScrollArea);
-    pageButtonScrollArea->setObjectName("PageButtonsScrollArea");
-    pageButtonScrollArea->setWidgetResizable(true);
-    pageButtonScrollArea->setFrameShape(QFrame::NoFrame);
+    contentsScrollArea = new QScrollArea(_this);
+    layout->addWidget(contentsScrollArea);
+    contentsScrollArea->setWidgetResizable(true);
+    contentsScrollArea->setFrameShape(QFrame::NoFrame);
 
-    contentsFrame = new QFrame(pageButtonScrollArea);
-    pageButtonScrollArea->setWidget(contentsFrame);
-    contentsFrame->setObjectName("PageButtonsFrame");
-    contentsFrame->setFrameShape(QFrame::NoFrame);
-
-    contentsLayout = new QVBoxLayout(contentsFrame);
-    contentsLayout->setContentsMargins(0, 0, 0, 0);
-    contentsLayout->setSpacing(0);
-    contentsLayout->setAlignment(Qt::AlignHCenter | Qt::AlignTop);
+    contentsFrame = new HxSettingBoxLayoutFrame(QBoxLayout::TopToBottom, _this);
+    contentsScrollArea->setWidget(contentsFrame);
+    contentsFrame->setObjectName("ContentsFrame");
+    contentsFrame->layout()->setAlignment(Qt::AlignLeft | Qt::AlignTop);
 }
 
 void HxSettingsNavigationBar::actionEvent(QActionEvent *event) {
+    Super::actionEvent(event);
     const auto action = event->action();
     const auto eventType = event->type();
 
@@ -175,7 +185,7 @@ void HxSettingsNavigationBar::actionEvent(QActionEvent *event) {
 
     if(eventType == QEvent::ActionAdded) {
         const auto button = new QToolButton(this);
-        ui->contentsLayout->addWidget(button);
+        ui->contentsFrame->layout()->addWidget(button);
         d->actionButtonHash.insert(action, button);
         button->setObjectName("PageButton");
         button->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
@@ -188,11 +198,21 @@ void HxSettingsNavigationBar::actionEvent(QActionEvent *event) {
         const auto button = d->actionButtonHash.value(action);
         if (button == nullptr)
             return;
-        ui->contentsLayout->removeWidget(button);
+        ui->contentsFrame->layout()->removeWidget(button);
         button->deleteLater();  
     } else if(eventType == QEvent::ActionChanged) {
         UpdateActionButton(action);
     }
+}
+
+void HxSettingsNavigationBar::showEvent(QShowEvent* event)
+{
+    Super::showEvent(event);
+    static auto editor = new QTextEdit(this);
+    editor->setWindowTitle("SettingNavigationBarContentsArea");
+    editor->setWindowFlags(Qt::Window);
+    editor->setText(widgetHierarchyText(ui->contentsFrame));
+    editor->show();
 }
 
 class HxSettingsPage::HxSettingsPagePrivate {
@@ -211,8 +231,7 @@ public:
     void retranslateUi() {}
 public:
     QScrollArea *contentsScrollArea = nullptr;
-    QFrame *contentsFrame = nullptr;
-    QVBoxLayout *contentsLayout = nullptr;
+    HxSettingBoxLayoutFrame *contentsFrame = nullptr;
 };
 
 HxSettingsPage::~HxSettingsPage() {
@@ -239,7 +258,7 @@ HxSettingsGroup *HxSettingsPage::addGroup(const QString &title)
 {
     const auto group = new HxSettingsGroup(this);
     group->setWindowTitle(title);
-    ui->contentsLayout->addWidget(group);
+    ui->contentsFrame->layout()->addWidget(group);
     return group;
 }
 
@@ -248,28 +267,12 @@ void HxSettingsPage::addWidget(QWidget *widget)
     if(const auto layout = widget->layout()) {
         layout->setContentsMargins(0,0,0,0);
     }
-    ui->contentsLayout->addWidget(widget);
-}
-
-void HxSettingsPage::addLayout(QLayout *layout)
-{
-    layout->setContentsMargins(0,0,0,0);
-    ui->contentsLayout->addLayout(layout);
-}
-
-void HxSettingsPage::setSpacing(int spacing) {
-    if(d->spacing == spacing)
-        return;
-    d->spacing = spacing;
-    ui->contentsLayout->setSpacing(spacing);
-}
-
-int HxSettingsPage::spacing() const {
-    return d->spacing;
+    ui->contentsFrame->layout()->addWidget(widget);
 }
 
 void HxSettingsPage::changeEvent(QEvent *ev)
 {
+    Super::changeEvent(ev);
     if(ev->type() == QEvent::WindowTitleChange) {
         const auto &title = windowTitle();
         d->toggleAction->setText(title);
@@ -278,8 +281,19 @@ void HxSettingsPage::changeEvent(QEvent *ev)
     }
 }
 
+void HxSettingsPage::showEvent(QShowEvent *event)
+{
+    Super::showEvent(event);
+    static auto editor = new QTextEdit(this);
+    editor->setWindowTitle("SettingPageContentsArea");
+    editor->setWindowFlags(Qt::Window);
+    editor->setText(widgetHierarchyText(ui->contentsFrame));
+    editor->show();
+}
+
 void HxSettingsPage::HxSettingsPageUi::setupUi(HxSettingsPage *page) {
     _this = page;
+    _this->setFrameShape(QFrame::NoFrame);
 
     const auto layout = new QVBoxLayout(_this);
     layout->setContentsMargins(0,0,0,0);
@@ -290,15 +304,10 @@ void HxSettingsPage::HxSettingsPageUi::setupUi(HxSettingsPage *page) {
     contentsScrollArea->setWidgetResizable(true);
     contentsScrollArea->setFrameShape(QFrame::NoFrame);
 
-    contentsFrame = new QFrame;
+    contentsFrame = new HxSettingBoxLayoutFrame(QBoxLayout::TopToBottom, _this);
     contentsScrollArea->setWidget(contentsFrame);
     contentsFrame->setObjectName("ContentsFrame");
-    contentsFrame->setFrameShape(QFrame::NoFrame);
-
-    contentsLayout = new QVBoxLayout(contentsFrame);
-    contentsLayout->setContentsMargins(0,0,0,0);
-    contentsLayout->setSpacing(0);
-    contentsLayout->setAlignment(Qt::AlignLeft | Qt::AlignTop);
+    contentsFrame->layout()->setAlignment(Qt::AlignLeft | Qt::AlignTop);
 }
 
 class HxSettingsGroup::HxSettingsGroupPrivate {
@@ -384,4 +393,28 @@ void HxSettingsGroup::HxSettingsGroupUi::setupUi(HxSettingsGroup *group)
     contentsLayout->setContentsMargins(0, 0, 0, 0);
     contentsLayout->setHorizontalSpacing(6);
     contentsLayout->setVerticalSpacing(0);
+}
+
+HxSettingBoxLayoutFrame::~HxSettingBoxLayoutFrame() {
+
+}
+
+HxSettingBoxLayoutFrame::HxSettingBoxLayoutFrame(QBoxLayout::Direction direction, QWidget *parent) : Super{parent} {
+    setFrameShape(QFrame::NoFrame);
+
+    mLayout = new QBoxLayout(direction, this);
+    mLayout->setContentsMargins(0,0,0,0);
+    mLayout->setSpacing(mSpacing);
+}
+
+void HxSettingBoxLayoutFrame::setSpacing(int spacing) {
+    if(mSpacing == spacing) {
+        return;
+    }
+    mSpacing = spacing;
+    mLayout->setSpacing(mSpacing);
+}
+
+int HxSettingBoxLayoutFrame::spacing() const {
+    return mSpacing;
 }
