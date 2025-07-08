@@ -22,15 +22,13 @@ public:
     void setRootWidget(QWidget *widget);
 
 protected:
-    bool eventFilter(QObject *object, QEvent *event) override;
+    void keyPressEvent(QKeyEvent* event) override;
+    void keyReleaseEvent(QKeyEvent* event) override;
 
 private:
     void loadLabels();
     void addLabelToView(QLabel *label);
-
-private:
-    QWidget *mRootWidget = nullptr;
-    QHash<QLabel*, QListWidgetItem*> mLabelItemHash;
+    void setItemWidgetsInteractive(bool active);
 };
 
 class ItemWidget : public QFrame {

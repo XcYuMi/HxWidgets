@@ -56,6 +56,9 @@
     <ClCompile Include="..\..\Test\SettingsDialogSearchTestWidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Test\ItemWidgetTestWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="..\..\Test\AnchorLayoutTestWidget.hpp">
@@ -80,6 +83,9 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="..\..\Test\SettingsDialogSearchTestWidget.hpp">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="..\..\Test\ItemWidgetTestWidget.hpp">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

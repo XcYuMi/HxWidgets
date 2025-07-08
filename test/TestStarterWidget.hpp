@@ -24,4 +24,5 @@ private:
     void onActionTestToolBar();
     void onActionTestBadge();
     void onActionSettingsDialogSearch();
+    void onActionTestItemWidgets();
 };

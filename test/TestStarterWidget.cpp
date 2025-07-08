@@ -9,6 +9,7 @@
 #include "ToolBarTestWidget.hpp"
 #include "BadgeTestWidget.hpp"
 #include "SettingsDialogSearchTestWidget.hpp"
+#include "ItemWidgetTestWidget.hpp"
 
 TestStarterWidget::~TestStarterWidget() {
     delete ui;
@@ -26,6 +27,7 @@ TestStarterWidget::TestStarterWidget(QWidget *parent) : QWidget(parent) , ui(new
     connect(ui->buttonToolBar, &QPushButton::clicked, this, &TestStarterWidget::onActionTestToolBar);
     connect(ui->buttonBadge, &QPushButton::clicked, this, &TestStarterWidget::onActionTestBadge);
     connect(ui->buttonSettingsDialogSearch, &QPushButton::clicked, this, &TestStarterWidget::onActionSettingsDialogSearch);
+    connect(ui->buttonItemWidget, &QPushButton::clicked, this, &TestStarterWidget::onActionTestItemWidgets);
 }
 
 void TestStarterWidget::onButtonFlowLayoutClicked() {
@@ -80,6 +82,14 @@ void TestStarterWidget::onActionTestBadge() {
 void TestStarterWidget::onActionSettingsDialogSearch()
 {
     const auto widget = new SettingsDialogSearchTestWidget(this);
+    widget->setWindowFlag(Qt::Window);
+    widget->setAttribute(Qt::WA_DeleteOnClose);
+    widget->show();
+}
+
+void TestStarterWidget::onActionTestItemWidgets()
+{
+    const auto widget = new ItemWidgetTestWidget(this);
     widget->setWindowFlag(Qt::Window);
     widget->setAttribute(Qt::WA_DeleteOnClose);
     widget->show();
