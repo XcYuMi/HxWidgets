@@ -19,6 +19,7 @@ SOURCES += \
     BadgeTestWidget.cpp \
     DoubleRangeSliderTestWidget.cpp \
     FlowLayoutTestWidget.cpp \
+    ItemWidgetTestWidget.cpp \
     NestedSplitterTestWidget.cpp \
     RangeSliderTestWidget.cpp \
     SettingsDialogSearchTestWidget.cpp \
@@ -32,6 +33,7 @@ HEADERS += \
     BadgeTestWidget.hpp \
     DoubleRangeSliderTestWidget.hpp \
     FlowLayoutTestWidget.hpp \
+    ItemWidgetTestWidget.hpp \
     NestedSplitterTestWidget.hpp \
     RangeSliderTestWidget.hpp \
     SettingsDialogSearchTestWidget.hpp \
