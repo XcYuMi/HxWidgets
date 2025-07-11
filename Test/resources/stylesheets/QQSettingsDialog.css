@@ -1,0 +1,51 @@
+﻿HxSettingsNavigationBar HxSettingBoxLayoutFrame#ContentsFrame {
+    padding: 8px;
+    background-color: orange;
+    qproperty-spacing: 6;
+}
+
+QQSettingsDialog HxSettingsPage HxSettingBoxLayoutFrame#ContentsFrame {
+    background-color: blue;
+    padding: 8px;
+    qproperty-spacing: 6;
+}
+
+/*
+QQSettingsDialog HxSettingsNavigationBar QToolButton {
+    width: 184px;
+    height: 36px;
+    min-height: 36px;
+    border-radius: 6px;
+    background-color: orange;
+}
+
+QQSettingsDialog HxSettingsNavigationBar QToolButton#PageButton:checked {
+    background-color: #DBDBDB;
+}
+
+QQSettingsDialog HxSettingsNavigationBar QToolButton#PageButton:hover {
+    background-color: #E4E4E4;
+}
+
+QQSettingsDialog HxSettingsNavigationBar QToolButton#PageButton:pressed {
+    background-color: #D0D0D0;
+}
+
+QQSettingsDialog HxSettingsGroup {
+    qproperty-spacing: 3;
+}
+
+QQSettingsDialog HxSettingsGroup QFrame#ContentsFrame{
+    background-color: green;
+    border-radius: 0px;
+    padding: 3px 3px 3px 3px;
+}
+
+QQSettingsDialog HxSettingsGroup QLabel#TitleLabel{
+    background-color: red;
+}
+
+QQSettingsDialog HxSettingsGroup QLabel#SettiingsFiledLabel{
+    background-color: orange;
+}
+*/
