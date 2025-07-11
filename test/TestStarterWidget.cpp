@@ -1,6 +1,8 @@
 ﻿#include "TestStarterWidget.hpp"
-#include "ui_TestStarterWidget.h"
+#include "WidgetsTestGlobalPrivate.hpp"
+#include "HxToolBar.hpp"
 
+#include <QVBoxLayout>
 #include "FlowLayoutTestWidget.hpp"
 #include "AnchorLayoutTestWidget.hpp"
 #include "NestedSplitterTestWidget.hpp"
@@ -10,87 +12,66 @@
 #include "BadgeTestWidget.hpp"
 #include "SettingsDialogSearchTestWidget.hpp"
 #include "ItemWidgetTestWidget.hpp"
+#include "SharedWidgetItemDelagateTestWidget.hpp"
 
-TestStarterWidget::~TestStarterWidget() {
-    delete ui;
-}
+class TestStarterWidget::TestStarterWidgetUi {
+    TestStarterWidget *_this = nullptr;
+public:
+    void setupUi(TestStarterWidget *widget);
+    void retranslateUi();
+public:
+    HxToolBar *toolBar = nullptr;
+};
 
-TestStarterWidget::TestStarterWidget(QWidget *parent) : QWidget(parent) , ui(new Ui::TestStarterWidget) {
+TestStarterWidget::~TestStarterWidget() { }
+
+TestStarterWidget::TestStarterWidget(QWidget *parent) : QWidget(parent) {
+    ui.reset(new TestStarterWidgetUi);
     ui->setupUi(this);
-    setWindowFlags(Qt::Window | Qt::WindowCloseButtonHint);
-
-    connect(ui->buttonFlowLayout, &QPushButton::clicked, this, &TestStarterWidget::onButtonFlowLayoutClicked);
-    connect(ui->buttonAnchorLayout, &QPushButton::clicked, this, &TestStarterWidget::onActionTestAnchorLayout);
-    connect(ui->buttonNestedSplitter, &QPushButton::clicked, this, &TestStarterWidget::onActionTestNestedSplitter);
-    connect(ui->buttonRangeSlider, &QPushButton::clicked, this, &TestStarterWidget::onActionTestRangeSlider);
-    connect(ui->buttonFloatRangeSlider, &QPushButton::clicked, this, &TestStarterWidget::onActionTestDoubleRangeSlider);
-    connect(ui->buttonToolBar, &QPushButton::clicked, this, &TestStarterWidget::onActionTestToolBar);
-    connect(ui->buttonBadge, &QPushButton::clicked, this, &TestStarterWidget::onActionTestBadge);
-    connect(ui->buttonSettingsDialogSearch, &QPushButton::clicked, this, &TestStarterWidget::onActionSettingsDialogSearch);
-    connect(ui->buttonItemWidget, &QPushButton::clicked, this, &TestStarterWidget::onActionTestItemWidgets);
+    initTestPages();
+    ui->retranslateUi();
 }
 
-void TestStarterWidget::onButtonFlowLayoutClicked() {
-    const auto widget = new FlowLayoutTestWidget(this);
-    widget->setWindowFlag(Qt::Window);
-    widget->setAttribute(Qt::WA_DeleteOnClose);
-    widget->show();
+void TestStarterWidget::TestStarterWidgetUi::setupUi(TestStarterWidget *widget) {
+    _this = widget;
+    _this->setWindowFlags(Qt::Window | Qt::WindowCloseButtonHint);
+
+    const auto layout = new QVBoxLayout(_this);
+    layout->setContentsMargins(0,0,0,0);
+    layout->setSpacing(0);
+
+    toolBar = new HxToolBar(_this);
+    layout->addWidget(toolBar);
+    
+    HxToolBar::FlowLayoutParams params;
+    params.flowOrder = Hx::FlowLayout::FlowOrder::RowFirst;
+    params.horizontalDirection = Hx::FlowLayout::HorizontalFlowDirection::LeftToRight;
+    params.verticalDirection = Hx::FlowLayout::VerticalFlowDirection::TopToBottom;
+    params.horizontalSpacing = 12;
+    params.verticalSpacing = 6; 
+    toolBar->setLayoutParams(params); 
 }
 
-void TestStarterWidget::onActionTestAnchorLayout() {
-    const auto widget = new AnchorLayoutTestWidget(this);
-    widget->setWindowFlag(Qt::Window);
-    widget->setAttribute(Qt::WA_DeleteOnClose);
-    widget->show();
+void TestStarterWidget::initTestPages() {
+    const auto &ShowPage = [=](QWidget *page) {
+        page->setParent(this);
+        page->setWindowFlag(Qt::Window);
+        page->setAttribute(Qt::WA_DeleteOnClose);
+        page->show();
+    };
+
+    ui->toolBar->addAction(tr("流动布局"), [=] { ShowPage(new FlowLayoutTestWidget); });
+    ui->toolBar->addAction(tr("锚点布局"), [=] { ShowPage(new AnchorLayoutTestWidget); });
+    ui->toolBar->addAction(tr("嵌套分割器"), [=] { ShowPage(new NestedSplitterTestWidget); });
+    ui->toolBar->addAction(tr("范围滑块"), [=] { ShowPage(new RangeSliderTestWidget); });
+    ui->toolBar->addAction(tr("浮点范围滑块"), [=] { ShowPage(new DoubleRangeSliderTestWidget); });
+    ui->toolBar->addAction(tr("工具条"), [=] { ShowPage(new ToolBarTestWidget); });
+    ui->toolBar->addAction(tr("徽标"), [=] { ShowPage(new BadgeTestWidget); });
+    ui->toolBar->addAction(tr("设置对框框搜索"), [=] { ShowPage(new SettingsDialogSearchTestWidget); });
+    ui->toolBar->addAction(tr("项视图"), [=] { ShowPage(new ItemWidgetTestWidget); });
+    ui->toolBar->addAction(tr("共享部件视图项代理"), [=] { ShowPage(new SharedWidgetItemDelagateTestWidget); });
 }
 
-void TestStarterWidget::onActionTestNestedSplitter() {
-    const auto widget = new NestedSplitterTestWidget(this);
-    widget->setWindowFlag(Qt::Window);
-    widget->setAttribute(Qt::WA_DeleteOnClose);
-    widget->show();
-}
-
-void TestStarterWidget::onActionTestRangeSlider() {
-    const auto widget = new RangeSliderTestWidget(this);
-    widget->setWindowFlag(Qt::Window);
-    widget->setAttribute(Qt::WA_DeleteOnClose);
-    widget->show();
-}
-
-void TestStarterWidget::onActionTestDoubleRangeSlider() {
-    const auto widget = new DoubleRangeSliderTestWidget(this);
-    widget->setWindowFlag(Qt::Window);
-    widget->setAttribute(Qt::WA_DeleteOnClose);
-    widget->show();
-}
-
-void TestStarterWidget::onActionTestToolBar() {
-    const auto widget = new ToolBarTestWidget(this);
-    widget->setWindowFlag(Qt::Window);
-    widget->setAttribute(Qt::WA_DeleteOnClose);
-    widget->show();
-}
-
-void TestStarterWidget::onActionTestBadge() {
-    const auto widget = new BadgeTestWidget(this);
-    widget->setWindowFlag(Qt::Window);
-    widget->setAttribute(Qt::WA_DeleteOnClose);
-    widget->show();
-}
-
-void TestStarterWidget::onActionSettingsDialogSearch()
-{
-    const auto widget = new SettingsDialogSearchTestWidget(this);
-    widget->setWindowFlag(Qt::Window);
-    widget->setAttribute(Qt::WA_DeleteOnClose);
-    widget->show();
-}
-
-void TestStarterWidget::onActionTestItemWidgets()
-{
-    const auto widget = new ItemWidgetTestWidget(this);
-    widget->setWindowFlag(Qt::Window);
-    widget->setAttribute(Qt::WA_DeleteOnClose);
-    widget->show();
+void TestStarterWidget::TestStarterWidgetUi::retranslateUi() {
+    _this->setWindowTitle(tr("部件测试启动页"));
 }

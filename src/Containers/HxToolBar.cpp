@@ -57,8 +57,9 @@ void HxToolBar::HxToolBarPrivate::init() {
 void HxToolBar::HxToolBarPrivate::updateLayoutParams() {
     if(std::holds_alternative<HxToolBar::BoxLayoutParams>(layoutParams)) {
         const auto &params = std::get<HxToolBar::BoxLayoutParams>(layoutParams);
-        if(layout == nullptr) {
-            layout = new QBoxLayout(params.direction, q);
+        if(layout == nullptr || !layout->metaObject()->inherits(&(QBoxLayout::staticMetaObject))) {
+            layout = new QBoxLayout(params.direction);
+            q->setLayout(nullptr);
             q->setLayout(layout);
         }
         const auto boxLayout = qobject_cast<QBoxLayout*>(layout);
@@ -68,8 +69,9 @@ void HxToolBar::HxToolBarPrivate::updateLayoutParams() {
         boxLayout->setContentsMargins(margins);
     } else if(std::holds_alternative<HxToolBar::FlowLayoutParams>(layoutParams)) {
         const auto &params = std::get<HxToolBar::FlowLayoutParams>(layoutParams);
-        if(layout == nullptr) {
-            layout = new Hx::FlowLayout(q);
+        if(layout == nullptr || !layout->metaObject()->inherits(&(Hx::FlowLayout::staticMetaObject))) {
+            layout = new Hx::FlowLayout;
+            q->setLayout(nullptr);
             q->setLayout(layout);
         }
         const auto flowLayout = qobject_cast<Hx::FlowLayout*>(layout);
@@ -98,7 +100,7 @@ QBoxLayout *HxToolBar::HxToolBarPrivate::boxLayout() const {
 }
 
 Hx::FlowLayout *HxToolBar::HxToolBarPrivate::flowLayout() const {
-    const auto flowLayout = qobject_cast<Hx::FlowLayout*>(q->layout());
+    const auto flowLayout = qobject_cast<Hx::FlowLayout*>(layout.data());
     return flowLayout;
 }
 
@@ -124,8 +126,9 @@ QLabel *HxToolBar::HxToolBarPrivate::createSection(const QString &name) {
 
 HxToolBar::HxToolBar(QWidget *parent) : QFrame{parent} {
     d.reset(new HxToolBarPrivate(this));
+    /*/
     BoxLayoutParams params;
-    setLayoutParams(params);
+    setLayoutParams(params); //*/
 }
 
 HxToolBar::~HxToolBar() {
@@ -158,6 +161,26 @@ void HxToolBar::removeWidget(QWidget *widget) {
 
 void HxToolBar::addToolButton(QToolButton *button) {
     addWidget(button);
+}
+
+QToolButton *HxToolBar::addToolButton(const QString &text) {
+    QToolButton *button = new QToolButton(this);
+    button->setText(text);
+    return button;
+}
+
+QToolButton *HxToolBar::addToolButton(const QIcon &icon, const QString &text) {
+    QToolButton *button = new QToolButton(this);
+    button->setIcon(icon);
+    button->setText(text);
+    return button;
+}
+
+QToolButton *HxToolBar::addToolButton(const QString &name, const QString &tip) {
+    QToolButton *button = new QToolButton(this);
+    button->setObjectName(name);
+    button->setToolTip(tip);
+    return button;
 }
 
 void HxToolBar::addAction(QAction *action) {
@@ -210,15 +233,17 @@ void HxToolBar::addAction(QAction *action) {
     }
 }
 
-QAction *HxToolBar::addAction(const ActionParams &params) {
-    const auto action = new QAction(this);
-    action->setObjectName(params.name);
-    action->setText(params.text);
-    action->setIcon(params.icon);
-    action->setToolTip(params.toolTip);
-    action->setStatusTip(params.statusTip);
-    action->setCheckable(params.checkable);
-    action->setChecked(params.checked);
+QAction *HxToolBar::addAction(const QString &text) {
+    QAction *action = new QAction(this);
+    action->setText(text);
+    addAction(action);
+    return action;
+}
+
+QAction *HxToolBar::addAction(const QIcon &icon, const QString &text) {
+    QAction *action = new QAction(this);
+    action->setIcon(icon);
+    action->setText(text);
     addAction(action);
     return action;
 }

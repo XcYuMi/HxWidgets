@@ -20,9 +20,11 @@
     <ClCompile Include="..\..\Src\Globals\HxWidgetsGlobal.cpp" />
     <ClCompile Include="..\..\Src\Globals\HxWidgetsNamespace.cpp" />
     <ClCompile Include="..\..\Src\Globals\WidgetUtils.cpp" />
+    <ClCompile Include="..\..\Src\ItemView\HxSharedWidgetItemDelegate.cpp" />
     <ClCompile Include="..\..\Src\Layouts\FlowLayout.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <QtMoc Include="..\..\Src\ItemView\HxSharedWidgetItemDelegate.hpp" />
     <QtMoc Include="..\..\Src\Globals\WidgetUtils.hpp" />
     <QtMoc Include="..\..\Src\Layouts\FlowLayout.hpp" />
     <QtMoc Include="..\..\Src\Containers\NestedSplitter.hpp" />

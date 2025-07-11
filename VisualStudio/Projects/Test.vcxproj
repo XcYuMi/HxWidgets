@@ -20,8 +20,13 @@
     <ClCompile Include="..\..\Test\NestedSplitterTestWidget.cpp" />
     <ClCompile Include="..\..\Test\RangeSliderTestWidget.cpp" />
     <ClCompile Include="..\..\Test\SettingsDialogSearchTestWidget.cpp" />
+    <ClCompile Include="..\..\Test\SharedWidgetItemDelagateTestWidget.cpp" />
     <ClCompile Include="..\..\Test\TestStarterWidget.cpp" />
     <ClCompile Include="..\..\Test\ToolBarTestWidget.cpp" />
+    <ClCompile Include="..\..\Test\WidgetsInspector\CustomizedWidgets.cpp" />
+    <ClCompile Include="..\..\Test\WidgetsInspector\InspectorFlowLayout.cpp" />
+    <ClCompile Include="..\..\Test\WidgetsInspector\PaletteInspector.cpp" />
+    <ClCompile Include="..\..\Test\WidgetsInspector\WidgetInspector.cpp" />
     <ClCompile Include="..\..\Test\WidgetsTestGlobal.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -43,14 +48,16 @@
     <QtMoc Include="..\..\Test\TestStarterWidget.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <QtUic Include="..\..\Test\TestStarterWidget.ui" />
-  </ItemGroup>
-  <ItemGroup>
     <QtMoc Include="..\..\Test\ToolBarTestWidget.hpp" />
     <QtMoc Include="..\..\Test\BadgeTestWidget.hpp" />
     <QtMoc Include="..\..\Test\SettingsDialogSearchTestWidget.hpp" />
     <QtMoc Include="..\..\Test\ItemWidgetTestWidget.hpp" />
-    <ClInclude Include="..\..\Test\ui_TestStarterWidget.h" />
+    <QtMoc Include="..\..\Test\WidgetsInspector\CustomizedWidgets.hpp" />
+    <QtMoc Include="..\..\Test\WidgetsInspector\InspectorFlowLayout.h" />
+    <QtMoc Include="..\..\Test\WidgetsInspector\PaletteInspector.hpp" />
+    <QtMoc Include="..\..\Test\WidgetsInspector\WidgetInspector.h" />
+    <QtMoc Include="..\..\Test\SharedWidgetItemDelagateTestWidget.hpp" />
+    <ClInclude Include="..\..\Test\WidgetsInspector\WidgetInspectorUi.h" />
     <ClInclude Include="..\..\Test\WidgetsTestGlobalPrivate.hpp" />
   </ItemGroup>
   <ItemGroup>
@@ -116,6 +123,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)Sources\Globals;$(SolutionDir)Sources\NativeWindow;$(SolutionDir)Sources\Layouts;$(SolutionDir)Sources\Controls;$(SolutionDir)Sources\Containers;$(SolutionDir)Sources\DockSystems;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING;_SILENCE_ALL_MS_EXT_DEPRECATION_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link />
   </ItemDefinitionGroup>

@@ -53,6 +53,9 @@
     <ClCompile Include="..\..\Src\Dialogs\HxSettingsDialog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Src\ItemView\HxSharedWidgetItemDelegate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Globals\HxWidgetsGlobal.hpp">
@@ -88,6 +91,9 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="..\..\Src\Dialogs\HxSettingsDialog.hpp">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="..\..\Src\ItemView\HxSharedWidgetItemDelegate.hpp">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

@@ -205,16 +205,6 @@ void HxSettingsNavigationBar::actionEvent(QActionEvent *event) {
     }
 }
 
-void HxSettingsNavigationBar::showEvent(QShowEvent* event)
-{
-    Super::showEvent(event);
-    static auto editor = new QTextEdit(this);
-    editor->setWindowTitle("SettingNavigationBarContentsArea");
-    editor->setWindowFlags(Qt::Window);
-    editor->setText(widgetHierarchyText(ui->contentsFrame));
-    editor->show();
-}
-
 class HxSettingsPage::HxSettingsPagePrivate {
     HxSettingsPage *q = nullptr;
 public:
@@ -279,16 +269,6 @@ void HxSettingsPage::changeEvent(QEvent *ev)
     } else if(ev->type() == QEvent::EnabledChange) {
         d->toggleAction->setEnabled(isEnabled());
     }
-}
-
-void HxSettingsPage::showEvent(QShowEvent *event)
-{
-    Super::showEvent(event);
-    static auto editor = new QTextEdit(this);
-    editor->setWindowTitle("SettingPageContentsArea");
-    editor->setWindowFlags(Qt::Window);
-    editor->setText(widgetHierarchyText(ui->contentsFrame));
-    editor->show();
 }
 
 void HxSettingsPage::HxSettingsPageUi::setupUi(HxSettingsPage *page) {

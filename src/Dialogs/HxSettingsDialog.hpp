@@ -37,7 +37,6 @@ public:
 
 protected:
     void changeEvent(QEvent *ev) override;
-    void showEvent(QShowEvent *event) override;
 };
 
 class HxSettingsNavigationBar : public QFrame
@@ -51,7 +50,6 @@ public:
     ~HxSettingsNavigationBar();
 protected:
     void actionEvent(QActionEvent *event) override;
-    void showEvent(QShowEvent* event) override;
 };
 
 class HX_WIDGETS_EXPORT HxSettingsGroup : public QFrame

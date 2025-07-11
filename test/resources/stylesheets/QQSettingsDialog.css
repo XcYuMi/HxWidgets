@@ -1,6 +1,7 @@
-﻿HxSettingsNavigationBar HxSettingBoxLayoutFrame#PageNavigationBar {
+﻿HxSettingsNavigationBar HxSettingBoxLayoutFrame#ContentsFrame {
     padding: 8px;
     background-color: orange;
+    qproperty-spacing: 6;
 }
 
 QQSettingsDialog HxSettingsPage HxSettingBoxLayoutFrame#ContentsFrame {

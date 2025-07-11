@@ -134,9 +134,7 @@ void ToolBarTestWidget::onAddActionTriggered() {
     if(text.isEmpty())
         return ;
 
-    HxToolBar::ActionParams params;
-    params.text = text;
-    ui->toolBar->addAction(params);
+    ui->toolBar->addAction(text);
 }
 
 void ToolBarTestWidget::onAddSeparatorTriggered() {

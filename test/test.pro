@@ -6,13 +6,13 @@ TARGET = HxWidgetsTest
 CONFIG += c++17
 QT += widgets
 
-
-
 #DEFINES += HX_WIDGET_INSOURCE
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
+
+include(WidgetsInspector/WidgetsInspector.pri)
 
 SOURCES += \
     AnchorLayoutTestWidget.cpp \
@@ -23,6 +23,7 @@ SOURCES += \
     NestedSplitterTestWidget.cpp \
     RangeSliderTestWidget.cpp \
     SettingsDialogSearchTestWidget.cpp \
+    SharedWidgetItemDelagateTestWidget.cpp \
     ToolBarTestWidget.cpp \
     WidgetsTestGlobal.cpp \
     main.cpp \
@@ -37,12 +38,12 @@ HEADERS += \
     NestedSplitterTestWidget.hpp \
     RangeSliderTestWidget.hpp \
     SettingsDialogSearchTestWidget.hpp \
+    SharedWidgetItemDelagateTestWidget.hpp \
     TestStarterWidget.hpp \
     ToolBarTestWidget.hpp \
     WidgetsTestGlobalPrivate.hpp
 
-FORMS += \
-    TestStarterWidget.ui
+FORMS +=
 
 HXWIDGETS_LIB_PATH = $$OUT_PWD/../Bin/x64/Debug
 HXWIDGETS_SRC_PATH = $$PWD/../Src

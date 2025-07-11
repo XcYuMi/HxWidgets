@@ -1,5 +1,6 @@
 ﻿#include <QApplication>
 #include "TestStarterWidget.hpp"
+#include "WidgetsInspector/WidgetInspector.h"
 #include <QDir>
 #include <QFile>
 #include <QStyle>
@@ -15,6 +16,8 @@ int main(int argc, char *argv[]) {
 
     TestStarterWidget starterWidget;
     starterWidget.show();
+
+    WidgetInspector::attach(&starterWidget);
 
     initStyle();
 
