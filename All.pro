@@ -1,7 +1,7 @@
 TEMPLATE = subdirs
 
 SUBDIRS += \
-    Src \
+    Sources \
     Test \
     Examples \
     Tools \
