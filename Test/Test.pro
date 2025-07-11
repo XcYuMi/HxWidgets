@@ -43,10 +43,8 @@ HEADERS += \
     ToolBarTestWidget.hpp \
     WidgetsTestGlobalPrivate.hpp
 
-FORMS +=
-
 HXWIDGETS_LIB_PATH = $$OUT_PWD/../Bin/x64/Debug
-HXWIDGETS_SRC_PATH = $$PWD/../Src
+HXWIDGETS_SRC_PATH = $$PWD/../Sources
 
 DESTDIR = $$HXWIDGETS_LIB_PATH
 
