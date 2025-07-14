@@ -55,7 +55,7 @@ void TestStarterWidget::TestStarterWidgetUi::setupUi(TestStarterWidget *widget) 
 void TestStarterWidget::initTestPages() {
     const auto &ShowPage = [=](QWidget *page) {
         page->setParent(this);
-        page->setWindowFlag(Qt::Window);
+        page->setWindowFlags(Qt::Window | Qt::WindowCloseButtonHint);
         page->setAttribute(Qt::WA_DeleteOnClose);
         page->show();
     };

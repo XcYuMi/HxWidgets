@@ -43,7 +43,7 @@ public:
     QPointer<QLayout> layout;
     Qt::ToolBarAreas qreas = Qt::ToolBarArea::NoToolBarArea;
     std::variant<std::monostate, HxToolBar::BoxLayoutParams, HxToolBar::FlowLayoutParams> layoutParams;
-    QMargins margins = QMargins(3, 3, 3, 3);
+    QMargins margins = QMargins(0, 0, 0, 0);
 };
 
 HxToolBar::HxToolBarPrivate::HxToolBarPrivate(HxToolBar *qptr) {
