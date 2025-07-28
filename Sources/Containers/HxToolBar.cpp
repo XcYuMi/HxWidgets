@@ -44,6 +44,7 @@ public:
     Qt::ToolBarAreas qreas = Qt::ToolBarArea::NoToolBarArea;
     std::variant<std::monostate, HxToolBar::BoxLayoutParams, HxToolBar::FlowLayoutParams> layoutParams;
     QMargins margins = QMargins(0, 0, 0, 0);
+    bool exposed = false;
 };
 
 HxToolBar::HxToolBarPrivate::HxToolBarPrivate(HxToolBar *qptr) {
@@ -55,6 +56,9 @@ void HxToolBar::HxToolBarPrivate::init() {
 }
 
 void HxToolBar::HxToolBarPrivate::updateLayoutParams() {
+    if (q->isVisible()) {
+        return;
+    }
     if(std::holds_alternative<HxToolBar::BoxLayoutParams>(layoutParams)) {
         const auto &params = std::get<HxToolBar::BoxLayoutParams>(layoutParams);
         if(layout == nullptr || !layout->metaObject()->inherits(&(QBoxLayout::staticMetaObject))) {
@@ -126,9 +130,8 @@ QLabel *HxToolBar::HxToolBarPrivate::createSection(const QString &name) {
 
 HxToolBar::HxToolBar(QWidget *parent) : QFrame{parent} {
     d.reset(new HxToolBarPrivate(this));
-    /*/
-    BoxLayoutParams params;
-    setLayoutParams(params); //*/
+    setFrameShape(QFrame::NoFrame);
+    setContentsMargins(0, 0, 0, 0);
 }
 
 HxToolBar::~HxToolBar() {
@@ -351,7 +354,15 @@ void HxToolBar::setLayoutParams(const HxToolBar::FlowLayoutParams &params) {
     d->updateLayoutParams();
 }
 
-void HxToolBar::changeEvent(QEvent *event)
-{
-    Q_UNUSED(event);
+void HxToolBar::changeEvent(QEvent *event) {
+    Super::changeEvent(event);
+}
+
+void HxToolBar::showEvent(QShowEvent *event) {
+    Super::showEvent(event);
+    if(d->exposed) {
+        return;
+    }
+    d->exposed = true;
+    d->updateLayoutParams();
 }

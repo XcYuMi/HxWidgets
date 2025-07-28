@@ -23,13 +23,32 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <QtRcc Include="..\..\Test\resources\stylesheets.qrc">
+      <Filter>Resource Files</Filter>
+    </QtRcc>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Test\resources\stylesheets\ToolBarTestWidget.css">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\Test\resources\stylesheets\QQSettingsDialog.css">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
     <ClCompile Include="..\..\Test\AnchorLayoutTestWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Test\BadgeTestWidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Test\DoubleRangeSliderTestWidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Test\FlowLayoutTestWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Test\ItemWidgetTestWidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Test\main.cpp">
@@ -41,22 +60,19 @@
     <ClCompile Include="..\..\Test\RangeSliderTestWidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Test\TestStarterWidget.cpp">
+    <ClCompile Include="..\..\Test\SettingsDialogSearchTestWidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Test\WidgetsTestGlobal.cpp">
+    <ClCompile Include="..\..\Test\SharedWidgetItemDelagateTestWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Test\TestStarterWidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Test\ToolBarTestWidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Test\BadgeTestWidget.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Test\SettingsDialogSearchTestWidget.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Test\ItemWidgetTestWidget.cpp">
+    <ClCompile Include="..\..\Test\WidgetsTestGlobal.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Test\WidgetsInspector\CustomizedWidgets.cpp">
@@ -71,12 +87,12 @@
     <ClCompile Include="..\..\Test\WidgetsInspector\WidgetInspector.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Test\SharedWidgetItemDelagateTestWidget.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="..\..\Test\AnchorLayoutTestWidget.hpp">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="..\..\Test\BadgeTestWidget.hpp">
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="..\..\Test\DoubleRangeSliderTestWidget.hpp">
@@ -85,22 +101,25 @@
     <QtMoc Include="..\..\Test\FlowLayoutTestWidget.hpp">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="..\..\Test\ItemWidgetTestWidget.hpp">
+      <Filter>Header Files</Filter>
+    </QtMoc>
     <QtMoc Include="..\..\Test\NestedSplitterTestWidget.hpp">
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="..\..\Test\RangeSliderTestWidget.hpp">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="..\..\Test\TestStarterWidget.hpp">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="..\..\Test\BadgeTestWidget.hpp">
-      <Filter>Header Files</Filter>
-    </QtMoc>
     <QtMoc Include="..\..\Test\SettingsDialogSearchTestWidget.hpp">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="..\..\Test\ItemWidgetTestWidget.hpp">
+    <QtMoc Include="..\..\Test\SharedWidgetItemDelagateTestWidget.hpp">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="..\..\Test\TestStarterWidget.hpp">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="..\..\Test\ToolBarTestWidget.hpp">
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="..\..\Test\WidgetsInspector\CustomizedWidgets.hpp">
@@ -115,32 +134,13 @@
     <QtMoc Include="..\..\Test\WidgetsInspector\WidgetInspector.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="..\..\Test\SharedWidgetItemDelagateTestWidget.hpp">
-      <Filter>Header Files</Filter>
-    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Test\WidgetsTestGlobalPrivate.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <QtMoc Include="..\..\Test\ToolBarTestWidget.hpp">
-      <Filter>Header Files</Filter>
-    </QtMoc>
     <ClInclude Include="..\..\Test\WidgetsInspector\WidgetInspectorUi.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <QtRcc Include="..\..\Test\resources\stylesheets.qrc">
-      <Filter>Resource Files</Filter>
-    </QtRcc>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\Test\resources\stylesheets\ToolBarTestWidget.css">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="..\..\Test\resources\stylesheets\QQSettingsDialog.css">
-      <Filter>Resource Files</Filter>
-    </None>
   </ItemGroup>
 </Project>

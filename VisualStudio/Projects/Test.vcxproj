@@ -11,6 +11,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <QtRcc Include="..\..\Test\resources\stylesheets.qrc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Test\resources\stylesheets\QQSettingsDialog.css" />
+    <None Include="..\..\Test\resources\stylesheets\ToolBarTestWidget.css" />
+  </ItemGroup>
+  <ItemGroup>
     <ClCompile Include="..\..\Test\AnchorLayoutTestWidget.cpp" />
     <ClCompile Include="..\..\Test\BadgeTestWidget.cpp" />
     <ClCompile Include="..\..\Test\DoubleRangeSliderTestWidget.cpp" />
@@ -33,10 +40,16 @@
     <QtMoc Include="..\..\Test\AnchorLayoutTestWidget.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <QtMoc Include="..\..\Test\BadgeTestWidget.hpp" />
+  </ItemGroup>
+  <ItemGroup>
     <QtMoc Include="..\..\Test\DoubleRangeSliderTestWidget.hpp" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="..\..\Test\FlowLayoutTestWidget.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="..\..\Test\ItemWidgetTestWidget.hpp" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="..\..\Test\NestedSplitterTestWidget.hpp" />
@@ -45,27 +58,24 @@
     <QtMoc Include="..\..\Test\RangeSliderTestWidget.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <QtMoc Include="..\..\Test\SettingsDialogSearchTestWidget.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="..\..\Test\SharedWidgetItemDelagateTestWidget.hpp" />
+  </ItemGroup>
+  <ItemGroup>
     <QtMoc Include="..\..\Test\TestStarterWidget.hpp" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="..\..\Test\ToolBarTestWidget.hpp" />
-    <QtMoc Include="..\..\Test\BadgeTestWidget.hpp" />
-    <QtMoc Include="..\..\Test\SettingsDialogSearchTestWidget.hpp" />
-    <QtMoc Include="..\..\Test\ItemWidgetTestWidget.hpp" />
-    <QtMoc Include="..\..\Test\WidgetsInspector\CustomizedWidgets.hpp" />
-    <QtMoc Include="..\..\Test\WidgetsInspector\InspectorFlowLayout.h" />
-    <QtMoc Include="..\..\Test\WidgetsInspector\PaletteInspector.hpp" />
-    <QtMoc Include="..\..\Test\WidgetsInspector\WidgetInspector.h" />
-    <QtMoc Include="..\..\Test\SharedWidgetItemDelagateTestWidget.hpp" />
+  </ItemGroup>
+  <ItemGroup>
     <ClInclude Include="..\..\Test\WidgetsInspector\WidgetInspectorUi.h" />
+    <QtMoc Include="..\..\Test\WidgetsInspector\WidgetInspector.h" />
+    <QtMoc Include="..\..\Test\WidgetsInspector\PaletteInspector.hpp" />
+    <QtMoc Include="..\..\Test\WidgetsInspector\InspectorFlowLayout.h" />
+    <QtMoc Include="..\..\Test\WidgetsInspector\CustomizedWidgets.hpp" />
     <ClInclude Include="..\..\Test\WidgetsTestGlobalPrivate.hpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <QtRcc Include="..\..\Test\resources\stylesheets.qrc" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\Test\resources\stylesheets\QQSettingsDialog.css" />
-    <None Include="..\..\Test\resources\stylesheets\ToolBarTestWidget.css" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{02DD40A7-9F46-4286-A072-64D8F2B08A16}</ProjectGuid>
@@ -122,7 +132,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" />
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)Sources\Globals;$(SolutionDir)Sources\NativeWindow;$(SolutionDir)Sources\Layouts;$(SolutionDir)Sources\Controls;$(SolutionDir)Sources\Containers;$(SolutionDir)Sources\DockSystems;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Sources\Globals;$(SolutionDir)Sources\NativeWindow;$(SolutionDir)Sources\Layouts;$(SolutionDir)Sources\Controls;$(SolutionDir)Sources\Containers;$(SolutionDir)Sources\DockSystems;$(SolutionDir)Sources\Dialogs;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING;_SILENCE_ALL_MS_EXT_DEPRECATION_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link />

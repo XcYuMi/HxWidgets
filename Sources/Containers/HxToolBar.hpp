@@ -14,6 +14,7 @@ class QAction;
 class HX_WIDGETS_EXPORT HxToolBar : public QFrame {
     Q_OBJECT
     HX_DECLARE_PRIVATE(HxToolBar)
+    using Super = QFrame;
 public:
     explicit HxToolBar(QWidget *parent = nullptr);
     virtual ~HxToolBar();
@@ -67,6 +68,7 @@ public:
 
 protected:
     void changeEvent(QEvent *event);
+    void showEvent(QShowEvent *event) override;
 
 public:
     // 指定文本添加动作，连接到一个函数指针(有上下文)

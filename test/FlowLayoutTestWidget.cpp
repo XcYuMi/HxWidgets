@@ -71,21 +71,24 @@ void FlowLayoutTestWidget::FlowLayoutTestWidgetUi::setupUi(FlowLayoutTestWidget 
     _this = widget;
 
     flowContainer = new QFrame(_this);
-    flowContainer->setFrameStyle(QFrame::StyledPanel);
+    flowContainer->setFrameStyle(QFrame::NoFrame);
 
     const bool in_layout  = false;
     if(in_layout) {
         const auto layout = new QGridLayout(_this);
+        layout->setContentsMargins(0, 0, 0, 0);
         layout->addItem(new QSpacerItem(6, 6, QSizePolicy::Expanding, QSizePolicy::Expanding), 0, 0);
         layout->addWidget(flowContainer, 0 , 1);
         layout->addItem(new QSpacerItem(6, 6, QSizePolicy::Expanding, QSizePolicy::Expanding), 0, 2);
         layout->addItem(new QSpacerItem(6, 6, QSizePolicy::Expanding, QSizePolicy::Expanding), 1, 0, 3);
     } else {
         const auto layout = new QVBoxLayout(_this);
+        layout->setContentsMargins(0, 0, 0, 0);
         layout->addWidget(flowContainer);
     }
 
     flowLayout = new Hx::FlowLayout(flowContainer);
+    flowLayout->setContentsMargins(0, 0, 0, 0);
 
     flowLayout->addWidget(new ColorRect(Qt::red, QSize(48, 48), flowContainer));
     flowLayout->addWidget(new ColorRect(Qt::red, QSize(48, 48), flowContainer));

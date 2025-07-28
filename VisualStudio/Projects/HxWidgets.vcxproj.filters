@@ -23,78 +23,141 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Src\Globals\HxWidgetsGlobal.cpp">
+    <ClCompile Include="..\..\Sources\Containers\HxToolBar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Globals\HxWidgetsNamespace.cpp">
+    <ClCompile Include="..\..\Sources\Containers\HxWidgetSearchHelper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Controls\DoubleRangerSlider.cpp">
+    <ClCompile Include="..\..\Sources\Containers\NestedSplitter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Controls\RangeSlider.cpp">
+    <ClCompile Include="..\..\Sources\Controls\DoubleRangerSlider.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Containers\NestedSplitter.cpp">
+    <ClCompile Include="..\..\Sources\Controls\HxBadge.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Layouts\FlowLayout.cpp">
+    <ClCompile Include="..\..\Sources\Controls\RangeSlider.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Containers\HxToolBar.cpp">
+    <ClCompile Include="..\..\Sources\Dialogs\HxSettingsDialog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Controls\HxBadge.cpp">
+    <ClCompile Include="..\..\Sources\Globals\HxWidgetsGlobal.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Globals\WidgetUtils.cpp">
+    <ClCompile Include="..\..\Sources\Globals\HxWidgetsNamespace.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Dialogs\HxSettingsDialog.cpp">
+    <ClCompile Include="..\..\Sources\Globals\WidgetUtils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\ItemView\HxSharedWidgetItemDelegate.cpp">
+    <ClCompile Include="..\..\Sources\ItemView\HItemDelegate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Sources\ItemView\HxItemSearchHelper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Sources\ItemView\HxItemViewDragDropHelper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Sources\ItemView\HxItemViewPaintHelper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Sources\ItemView\HxListView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Sources\ItemView\HxSharedWidgetItemDelegate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Sources\ItemView\HxTableView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Sources\ItemView\HxTreeView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Sources\ItemView\ItemViewFriend.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Sources\Layouts\FlowLayout.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Sources\WindowSystem\HxCustomizedWindowHelper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Sources\WindowSystem\HxCustomizedWindowHelper_Windows.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Src\Globals\HxWidgetsGlobal.hpp">
+    <QtMoc Include="..\..\Sources\Containers\HxToolBar.hpp">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Globals\HxWidgetsGlobalPrivate.hpp">
+    </QtMoc>
+    <QtMoc Include="..\..\Sources\Containers\HxWidgetSearchHelper.hpp">
       <Filter>Header Files</Filter>
-    </ClInclude>
+    </QtMoc>
+    <QtMoc Include="..\..\Sources\Containers\NestedSplitter.hpp">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="..\..\Sources\Controls\DoubleRangerSlider.hpp">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="..\..\Sources\Controls\HxBadge.hpp">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="..\..\Sources\Controls\RangeSlider.hpp">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="..\..\Sources\Dialogs\HxSettingsDialog.hpp">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="..\..\Sources\Globals\HxWidgetsNamespace.hpp">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="..\..\Sources\Globals\WidgetUtils.hpp">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="..\..\Sources\ItemView\HxItemDelagate.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="..\..\Sources\ItemView\HxItemSearchHelper.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="..\..\Sources\ItemView\HxItemViewDragDropHelper.hpp">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="..\..\Sources\ItemView\HxItemViewPaintHelper.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="..\..\Sources\ItemView\HxListView.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="..\..\Sources\ItemView\HxSharedWidgetItemDelegate.hpp">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="..\..\Sources\ItemView\HxTableView.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="..\..\Sources\ItemView\HxTreeView.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="..\..\Sources\ItemView\ItemViewFriend.hpp">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="..\..\Sources\Layouts\FlowLayout.hpp">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="..\..\Sources\WindowSystem\HxCustomizedWindowHelper.hpp">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="..\..\Src\Globals\HxWidgetsNamespace.hpp">
+    <ClInclude Include="..\..\Sources\Globals\HxWidgetsGlobal.hpp">
       <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="..\..\Src\Controls\DoubleRangerSlider.hpp">
+    </ClInclude>
+    <ClInclude Include="..\..\Sources\Globals\HxWidgetsGlobalPrivate.hpp">
       <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="..\..\Src\Controls\RangeSlider.hpp">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="..\..\Src\Containers\NestedSplitter.hpp">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="..\..\Src\Layouts\FlowLayout.hpp">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="..\..\Src\Containers\HxToolBar.hpp">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="..\..\Src\Controls\HxBadge.hpp">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="..\..\Src\Globals\WidgetUtils.hpp">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="..\..\Src\Dialogs\HxSettingsDialog.hpp">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="..\..\Src\ItemView\HxSharedWidgetItemDelegate.hpp">
-      <Filter>Header Files</Filter>
-    </QtMoc>
+    </ClInclude>
   </ItemGroup>
 </Project>

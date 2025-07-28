@@ -18,7 +18,7 @@ public:
     void invalidCache();
     QSize effectiveItemSize(QLayoutItem *item) const;
     QSize calculateSize(const QSize &constraint = QSize());
-    void doLayout(const QRect &rect) const;
+    void doLayout(const QRect &r) const;
     int directionSign() const;
     void applyDirectionAdjustment(const QRect &rect, QVector<QRect> &geometries) const;
 
@@ -262,13 +262,16 @@ QSize FlowLayout::FlowLayoutPrivate::calculateSize(const QSize &constraint) {
     return QSize(totalWidth, totalHeight);
 }
 
-void FlowLayout::FlowLayoutPrivate::doLayout(const QRect &rect) const {
+void FlowLayout::FlowLayoutPrivate::doLayout(const QRect &r) const {
     if (items.isEmpty())
         return;
 
     const bool isRowFirst = (flowOrder == FlowOrder::RowFirst);
     const int hSign = (horizontalFlow == HorizontalFlowDirection::LeftToRight) ? 1 : -1; // 水平方向符号 (1 或 -1)
     const int vSign = (verticalFlow == VerticalFlowDirection::TopToBottom) ? 1 : -1; // 垂直方向符号 (1 或 -1)
+
+    //const auto &margins = _this->contentsMargins();
+    const auto &rect = _this->contentsRect();
 
     int x = rect.x();    // 当前行/列的起始坐标
     int y = rect.y();
@@ -283,7 +286,7 @@ void FlowLayout::FlowLayoutPrivate::doLayout(const QRect &rect) const {
 
         if (isRowFirst) {
             // 行主序布局：优先水平排列，超出宽度则换行
-            int nextX = x + hSign * (itemSize.width() + horizontalSpacing);
+            int nextX = x + hSign * (itemSize.width() + 0);
             bool exceedBoundary = (hSign > 0) ? (nextX > rect.right()) : (nextX < rect.left());
 
             if (exceedBoundary) {
@@ -298,7 +301,7 @@ void FlowLayout::FlowLayoutPrivate::doLayout(const QRect &rect) const {
             x += hSign * (itemSize.width() + horizontalSpacing);
         } else {
             // 列主序布局：优先垂直排列，超出高度则换列
-            int nextY = y + vSign * (itemSize.height() + verticalSpacing);
+            int nextY = y + vSign * (itemSize.height() + 0);
             bool exceedBoundary = (vSign > 0) ? (nextY > rect.bottom()) : (nextY < rect.top());
 
             if (exceedBoundary) {
