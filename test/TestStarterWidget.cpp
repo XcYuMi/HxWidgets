@@ -14,18 +14,18 @@
 #include "ItemWidgetTestWidget.hpp"
 #include "SharedWidgetItemDelagateTestWidget.hpp"
 
+#include <QLabel>
+
 class TestStarterWidget::TestStarterWidgetUi {
     TestStarterWidget *_this = nullptr;
 public:
     void setupUi(TestStarterWidget *widget);
     void retranslateUi();
-public:
-    HxToolBar *toolBar = nullptr;
 };
 
 TestStarterWidget::~TestStarterWidget() { }
 
-TestStarterWidget::TestStarterWidget(QWidget *parent) : QWidget(parent) {
+TestStarterWidget::TestStarterWidget(QWidget *parent) : Super(parent) {
     ui.reset(new TestStarterWidgetUi);
     ui->setupUi(this);
     initTestPages();
@@ -36,20 +36,13 @@ void TestStarterWidget::TestStarterWidgetUi::setupUi(TestStarterWidget *widget) 
     _this = widget;
     _this->setWindowFlags(Qt::Window | Qt::WindowCloseButtonHint);
 
-    const auto layout = new QVBoxLayout(_this);
-    layout->setContentsMargins(0,0,0,0);
-    layout->setSpacing(0);
-
-    toolBar = new HxToolBar(_this);
-    layout->addWidget(toolBar);
-    
     HxToolBar::FlowLayoutParams params;
     params.flowOrder = Hx::FlowLayout::FlowOrder::RowFirst;
     params.horizontalDirection = Hx::FlowLayout::HorizontalFlowDirection::LeftToRight;
     params.verticalDirection = Hx::FlowLayout::VerticalFlowDirection::TopToBottom;
     params.horizontalSpacing = 12;
     params.verticalSpacing = 6; 
-    toolBar->setLayoutParams(params); 
+    _this->setLayoutParams(params);
 }
 
 void TestStarterWidget::initTestPages() {
@@ -60,16 +53,24 @@ void TestStarterWidget::initTestPages() {
         page->show();
     };
 
-    ui->toolBar->addAction(tr("流动布局"), [=] { ShowPage(new FlowLayoutTestWidget); });
-    ui->toolBar->addAction(tr("锚点布局"), [=] { ShowPage(new AnchorLayoutTestWidget); });
-    ui->toolBar->addAction(tr("嵌套分割器"), [=] { ShowPage(new NestedSplitterTestWidget); });
-    ui->toolBar->addAction(tr("范围滑块"), [=] { ShowPage(new RangeSliderTestWidget); });
-    ui->toolBar->addAction(tr("浮点范围滑块"), [=] { ShowPage(new DoubleRangeSliderTestWidget); });
-    ui->toolBar->addAction(tr("工具条"), [=] { ShowPage(new ToolBarTestWidget); });
-    ui->toolBar->addAction(tr("徽标"), [=] { ShowPage(new BadgeTestWidget); });
-    ui->toolBar->addAction(tr("设置对框框搜索"), [=] { ShowPage(new SettingsDialogSearchTestWidget); });
-    ui->toolBar->addAction(tr("项视图"), [=] { ShowPage(new ItemWidgetTestWidget); });
-    ui->toolBar->addAction(tr("共享部件视图项代理"), [=] { ShowPage(new SharedWidgetItemDelagateTestWidget); });
+    //addAction(tr("流动布局"), [=] { ShowPage(new FlowLayoutTestWidget); });
+    addAction(tr("锚点布局"), [=] { ShowPage(new AnchorLayoutTestWidget); });
+    addAction(tr("嵌套分割器"), [=] { ShowPage(new NestedSplitterTestWidget); });
+    addAction(tr("范围滑块"), [=] { ShowPage(new RangeSliderTestWidget); });
+    addAction(tr("浮点范围滑块"), [=] { ShowPage(new DoubleRangeSliderTestWidget); });
+    //addAction(tr("工具条"), [=] { ShowPage(new ToolBarTestWidget); });
+    addAction(tr("徽标"), [=] { ShowPage(new BadgeTestWidget); });
+    addAction(tr("设置对框框搜索"), [=] { ShowPage(new SettingsDialogSearchTestWidget); });
+    addAction(tr("项视图"), [=] { ShowPage(new ItemWidgetTestWidget); });
+    addAction(tr("共享部件视图项代理"), [=] { ShowPage(new SharedWidgetItemDelagateTestWidget); });
+    addAction(tr("测试可换行标签"), [=]{
+        const auto label = new QLabel(this);
+        label->setWindowFlags(Qt::WindowCloseButtonHint | Qt::Window);
+        label->setWordWrap(true);
+        label->setText("ABCDEFGHIJKLMNOPQRST");
+        label->setMinimumWidth(96);
+        label->show();
+    });
 }
 
 void TestStarterWidget::TestStarterWidgetUi::retranslateUi() {

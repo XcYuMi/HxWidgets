@@ -151,7 +151,8 @@ QLayoutItem *FlowLayout::takeAt(int index) {
 }
 
 QSize FlowLayout::sizeHint() const {
-    return d->calculateSize();
+    auto hint = d->calculateSize();
+    return hint;
 }
 
 void FlowLayout::setGeometry(const QRect &rect) {
@@ -169,14 +170,17 @@ bool FlowLayout::hasHeightForWidth() const {
 }
 
 int FlowLayout::heightForWidth(int width) const {
-    if(d->flowOrder != FlowOrder::RowFirst)
+    if (d->flowOrder != FlowOrder::RowFirst) {
         return -1;
+    }
+        
     if(!d->layoutCache.heightForWidth.contains(width))
     {
         const auto &size = d->calculateSize(QSize(width, -1));
         d->layoutCache.heightForWidth.insert(width, size.height());
     }
-    return d->layoutCache.heightForWidth[width];
+    int height = d->layoutCache.heightForWidth[width];
+    return height;
 }
 
 ////////////////////////////////////////////// QLayout::私有方法 ////////////////////////////////////////////////////////
@@ -225,7 +229,7 @@ QSize FlowLayout::FlowLayoutPrivate::calculateSize(const QSize &constraint) {
         if (isRowFirst) {
             // 行主序的尺寸计算
             bool needWrap = (maxWidth > 0) &&
-                            (x + hSign * (itemSize.width() + horizontalSpacing) > maxWidth);
+                            (x + hSign * (itemSize.width() + 0) > maxWidth);
 
             if (needWrap) {
                 x = 0;
@@ -256,8 +260,8 @@ QSize FlowLayout::FlowLayoutPrivate::calculateSize(const QSize &constraint) {
     }
 
     // 计算实际尺寸（考虑方向符号）
-    totalWidth = qAbs(totalWidth) - horizontalSpacing;
-    totalHeight = qAbs(totalHeight) - verticalSpacing;
+    totalWidth = qAbs(totalWidth) - 0;
+    totalHeight = qAbs(totalHeight) - 0;
 
     return QSize(totalWidth, totalHeight);
 }
